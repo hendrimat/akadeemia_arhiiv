@@ -1,0 +1,151 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AKADEEMIA KAART</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Jost:ital,wght@0,100..900;1,100..900&family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+      {%- if style %}
+    {{ style | safe }}
+    {%- endif %}
+  </head>
+  <body>
+  <header>
+            <nav class="header-nav">
+                <div class="nav-links-left">
+                    <a href="index.html">NUMBRID</a>
+                    <a href="kaart.html">KAART</a>
+                </div>
+                <a href="#">LEHEST</a>
+            </nav>
+    </header>
+  <div class="container">
+    <div id="loading">
+    <img id="loading-image" alt="Loading..." width="5%" />
+</div>
+<div id="deck-container"></div>
+
+<div class="content-wrapper">
+
+    <div class="stack top-left">
+    {% if use_title %}
+    <div id="title-container" class="container-box">
+        <div style="font-weight:bold; font-size:{{title_font_size}}pt;">{{title}}</div>
+        <div style="font-size:{{sub_title_font_size}}pt; opacity: 0.8;">{{sub_title}}</div>
+    </div>
+    {% endif %}
+
+    {% if search %}
+    <div id="search-container" class="container-box">
+        <input autocomplete="off" type="search" id="text-search" placeholder="Search..." />
+    </div>
+    {% endif %}
+
+    <div id="label-toggle-container" class="container-box">
+        <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 14px; user-select: none;">
+            <input type="checkbox" id="label-toggle" checked />
+            Teemad
+        </label>
+    </div>
+
+    {% if enable_topic_tree %}
+    <div id="topic-tree" class="container-box"></div>
+    {% endif %}
+    </div>
+
+    <div class="stack top-right">
+    {%- if enable_colormap_selector %}
+    <div id="colormap-selector-container" class="container-box"></div>
+    {%- endif -%}
+    <div id="legend-container" class="container-box" style="display:none;"></div>
+    </div>
+
+    <div class="stack bottom-left">
+    {%- if enable_histogram %}
+    <div id="d3histogram-container" class="container-box"></div>
+    {%- endif -%}
+    </div>
+
+    <div class="stack bottom-right">
+        <div id="point-info-container" class="container-box" style="display:none;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:5px; border-bottom:1px solid rgba(0,0,0,0.1); padding-bottom:5px;">
+                <span id="point-header-meta" class="text-gray" style="font-size: 0.8em; text-transform: uppercase;"></span>
+                <span id="point-info-close" style="cursor:pointer; font-weight:bold; font-size:1.5rem; line-height:0.8;">&times;</span>
+            </div>
+            <div id="point-info-content"></div>
+        </div>
+    </div>
+
+    <div class="mobile-controls">
+    <div class="mobile-view-container">
+        <div id="histogram-view" class="mobile-view"></div>
+        <div id="colormap-view" class="mobile-view"></div>
+    </div>
+
+    <div class="mobile-view-switcher">
+        {% if enable_histogram %}
+        <button id="mobile-hist-btn" class="tab-button" onclick="toggleMobileView('histogram-view')">
+        AJAJOON
+        </button>
+        {% endif %}
+
+        {% if enable_colormap_selector %}
+        <div id="mobile-colormap-tab-target" class="tab-wrapper"></div>
+        {% endif %}
+    </div>
+    </div>
+
+</div>
+    {% if logo %}
+    <div id="logo-container" class="container-box" style="position: fixed; z-index: 0; bottom: 0; right: 0;">
+    <img src="{{logo}}" style="width:{{logo_width}}px" />
+    </div>
+    {% endif %}
+{%- if show_loading_progress %}
+<div id="progress-container" class="datamapplot-progress-container container-box">
+    <div id="point-data-progress" class="datamapplot-progress-bar">
+    <span class="datamapplot-progress-bar-fill" style="width: 0%;">
+        <span class="datamapplot-progress-bar-text">Point Data: 0%</span>
+    </span>
+    </div>
+    <div id="label-data-progress" class="datamapplot-progress-bar">
+    <span class="datamapplot-progress-bar-fill" style="width: 0%;">
+        <span class="datamapplot-progress-bar-text">Label Data: 0%</span>
+    </span>
+    </div>
+    <div id="meta-data-progress" class="datamapplot-progress-bar">
+    <span class="datamapplot-progress-bar-fill" style="width: 0%;">
+        <span class="datamapplot-progress-bar-text">Meta Data: 0%</span>
+    </span>
+    </div>
+    {%- if enable_histogram %}
+    <div id="histogram-bin-data-progress" class="datamapplot-progress-bar">
+    <span class="datamapplot-progress-bar-fill" style="width: 0%;">
+        <span class="datamapplot-progress-bar-text">Histogram Bin Data: 0%</span>
+    </span>
+    </div>
+    <div id="histogram-index-data-progress" class="datamapplot-progress-bar">
+    <span class="datamapplot-progress-bar-fill" style="width: 0%;">
+        <span class="datamapplot-progress-bar-text">Histogram Index Data: 0%</span>
+    </span>
+    </div>
+    {%- endif -%}
+    {%- if enable_colormap_selector %}
+    <div id="color-data-progress" class="datamapplot-progress-bar">
+    <span class="datamapplot-progress-bar-fill" style="width: 0%;">
+        <span class="datamapplot-progress-bar-text">Colormap Data: 0%</span>
+    </span>
+    </div>
+    {%- endif %}
+</div>
+{%- endif %}
+{% if custom_html %} {{custom_html}} {%- endif -%}
+  {%- if script %}
+    {{ script | safe }}
+  {%- endif %}
+  </div>
+  </body>
+
+</html>

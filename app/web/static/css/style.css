@@ -1,0 +1,337 @@
+/* * =============================================
+ * Custom CSS
+ * =============================================
+*/
+
+/* --- 1. Root Variables & Reset --- */
+:root {
+    --font-family-sans: 'Josefin Sans', sans-serif;
+    --font-family-serif: 'Tinos', serif;
+    --bg-color: #ffc9d6;
+    --text-color: #020202;
+    --text-color-muted: #47474a;
+    --primary-color: #f387a1;
+    --primary-focus-color: #ed708f;
+    --secondary-color: #dfe3e8;
+    --card-bg-color: #ffc9d6;
+    --card-border-color: #ffc9d6;
+    --card-section-bg-color: #ffc9d6;
+    --error-color: #e53935;
+    --border-radius: 0.5rem;
+    --spacing: 0.5rem;
+    --marker-gap: 1rem;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 18px; /* Default is 16px, adjust this value as needed */
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-family-sans), sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid var(--text-color-muted);
+    opacity: 0.5;
+}
+
+/* --- 2. Typography --- */
+h1, h2, h3, h4, h5, h6 {
+    margin: 0 0 0.5em 0;
+    font-weight: 300;
+}
+h1 {
+    font-size: clamp(3rem, 15vw, 6rem);
+}
+h2 { font-size: 1.75rem; }
+h4 { font-size: 1.25rem; }
+p { margin: 0 0 0.5em 0; }
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+a:hover, a:focus {
+    color: var(--primary-focus-color);
+}
+em { font-style: italic }
+small { font-size: 0.875em; }
+
+/* --- 3. Layout --- */
+.container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+ body {
+    display: block; /* Reverted from grid for simplicity */
+ }
+ .container {
+     margin-left: auto;
+     margin-right: auto;
+ }
+
+
+
+/* --- 4. Main Components --- */
+header {
+    background-color: #0d1419;
+    padding: calc(var(--spacing) * 3);
+    /* padding-bottom: calc(var(--spacing) * 7); */
+    text-align: center;
+    position: relative;
+    z-index: 1111;
+}
+header h1 {
+    color: var(--bg-color);
+    margin-top: 5rem;
+    line-height: 1;
+    font-weight: 400;
+}
+main {
+    padding: calc(var(--spacing) * 3);
+}
+input[type="search"] {
+    width: 85%;
+    padding: 0.75rem 1rem;
+    font-family: inherit;
+    font-size: 1rem;
+    color: var(--text-color);
+    background: var(--bg-color);
+}
+
+details:not(:last-child) {
+     margin-bottom: var(--spacing);
+}
+summary {
+    cursor: pointer;
+    list-style: none;
+}
+summary::-webkit-details-marker { display: none; }
+
+.header-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* padding-bottom: 1rem; Adds space between nav and the main title */
+}
+
+.header-nav a {
+    color: var(--bg-color);
+    opacity: 0.9;
+    transition: opacity 0.2s ease;
+}
+
+.header-nav a:hover,
+.header-nav a:focus {
+    opacity: 1;
+    color: var(--bg-color); /* Ensures hover color remains consistent */
+}
+
+.nav-links-left {
+    display: flex;
+    gap: 1.5rem; /* Adjust the space between ARHIIV and KAART */
+}
+
+
+/* --- 5. App-Specific Styles --- */
+
+/* Styles for the new Month Navigator */
+.month-navigator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.75rem;
+    font-weight: 600;
+    padding: 1rem 0;
+    top: 0;
+    background-color: var(--bg-color);
+    z-index: 10;
+    user-select: none;
+}
+.nav-btn, .nav-item {
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+    transition: background-color 0.2s ease;
+}
+.nav-btn:hover, .nav-item:hover {
+    background-color: rgba(0,0,0,0.08);
+}
+.selector-popup {
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    z-index: 100;
+    max-height: 250px;
+    overflow-y: auto;
+    margin-top: 0.5rem;
+}
+.selector-popup div {
+    padding: 0.5rem 1.5rem;
+    cursor: pointer;
+}
+.selector-popup div:hover {
+    background-color: #f0f0f0;
+}
+
+
+.month-header {
+    position: sticky;
+    font-weight: 600;
+    top: 0;
+    padding: 1rem 0;
+    z-index: 9;
+    margin: 0 0 1rem 0;
+    background-color: var(--bg-color);
+}
+.article-card {
+    display: flex;
+    align-items: baseline;
+    gap: var(--marker-gap);
+}
+.article-card:not(:last-child) {
+    margin-bottom: var(--spacing);
+}
+.article-card > details {
+    flex-grow: 1;
+    margin-bottom: 0.75em;
+}
+.article-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    cursor: default;
+}
+
+.article-summary .title {
+    flex: 1 1 6rem;
+    min-width: 0;
+}
+
+.article-summary .author-info {
+    flex: 0 1 auto;
+    margin-left: 2rem;
+    text-align: right;
+}
+.article-summary .title p.has-pdf {
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+.article-summary .title p.has-pdf:hover {
+    color: var(--primary-color);
+}
+.details-marker {
+    flex-shrink: 0;
+    transition: transform 0.2s ease-in-out;
+    font-weight: 500;
+    color: var(--text-color-muted);
+    cursor: pointer;
+}
+.details-marker.is-open {
+    transform: rotate(90deg);
+}
+
+.text-gray {
+    color: var(--text-color-muted);
+}
+
+/* Abstract Styles */
+.abstract-container {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+.abstract-text {
+    margin: 0.5rem 0 0;
+    font-family: "Tinos", serif;
+    font-weight: 400;
+    font-style: italic;
+    text-align: justify;
+    color: var(--text-color-muted);
+}
+.abstract-text.is-clamped + .toggle-abstract-btn {
+    display: inline-block;
+}
+
+.abstract-text.is-clamped {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+}
+
+.abstract-text:not(.is-clamped) + .toggle-abstract-btn {
+    display: inline-block;
+}
+.toggle-abstract-btn {
+    align-self: flex-end;
+    background: none;
+    display: none;
+    border: none;
+    padding: 0;
+    margin-top: 0.5rem;
+    color: var(--text-color-muted);
+    font-style: italic;
+    font-weight: normal;
+    font-family: inherit;
+    font-size: 0.9em;
+    cursor: pointer;
+}
+.toggle-abstract-btn:hover {
+    color: var(--text-color);
+    background: none;
+}
+
+/* Recommendations Section */
+.recommendations-container {
+    padding-bottom: 1rem;
+    font-size: 0.9rem;
+}
+.similar-articles-trigger {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    cursor: pointer;
+    color: var(--text-color-muted);
+    transition: color 0.2s ease;
+    list-style: none;
+}
+.similar-articles-trigger:hover {
+    color: var(--text-color);
+}
+.recommendations-container[open] > .similar-articles-trigger .details-marker {
+    transform: rotate(90deg);
+}
+.goto-article-btn {
+    background: none;
+    margin-top: 0.5rem;
+    color: var(--text-color-muted);
+    font-style: normal;
+    font-weight: normal;
+    font-family: inherit;
+    cursor: pointer;
+}
+.goto-article-btn:hover {
+    color: var(--text-color);
+    background: none;
+}
+
+.status-error {
+    color: var(--error-color);
+    font-weight: bold;
+}
+#articles-container {
+    min-height: 100vh;
+}

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AKADEEMIA soovitaja</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Jost:ital,wght@0,100..900;1,100..900&family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav class="header-nav">
+                <div class="nav-links-left">
+                    <a href="index.html">NUMBRID</a>
+                    <a href="kaart.html">KAART</a>
+                </div>
+                <a href="#">LEHEST</a>
+            </nav>
+            <h1>AKADEEMIA <br> ARHIIV</h1>
+            <p id="status">Laen andmeid...</p>
+            <input type="search" id="search-input" placeholder="Otsi pealkirja, autori, aasta järgi...">
+        </header>
+
+        <div id="month-navigator-container" class="month-navigator"></div>
+        <main id="articles-container"></main>
+    </div>
+
+    <template id="article-card-template">
+        <div class="article-card">
+            <span class="details-marker" aria-hidden="true">></span>
+            <details data-id="">
+                <summary class="article-summary">
+                    <div class="title">
+                        <p data-template="title">Article Title Placeholder</p>
+                    </div>
+                    <div class="author-info">
+                        <p><em data-template="author">Author Placeholder</em></p>
+                        <p class="text-gray" data-template="info"><em></em></p>
+                    </div>
+                </summary>
+                <article>
+                    <div data-template="details-section" style="display: none;">
+                        <div class="abstract-container">
+                            <p class="abstract-text" data-template="abstract"></p>
+                            <button class="toggle-abstract-btn">Loe edasi</button>
+                        </div>
+                    </div>
+
+                    <div data-template="goto-section" style="display: none; margin-top: 1rem;">
+                        <a role="button" data-template="goto-btn" class="goto-article-btn outline">>  NÄITA NUMBRIS</a>
+                    </div>
+
+                    <div data-template="recs-section" style="display: none;">
+                        <details class="recommendations-container">
+                            <summary class="similar-articles-trigger">
+                                <span class="details-marker" aria-hidden="true">></span>
+                                <span>SARNASED ARTIKLID</span>
+                            </summary>
+                            <div class="recommendations-list" style="margin-top: 1rem; padding-left: 1.5rem;">
+                                </div>
+                        </details>
+                    </div>
+                </article>
+            </details>
+        </div>
+    </template>
+
+    <template id="month-navigator-template">
+        <div class="nav-btn" data-nav="month-prev">&lt;</div>
+        <div class="nav-item" data-nav="year-select" data-template="year"></div>
+        <span style="margin: 0 0.5rem;">/</span>
+        <div class="nav-item" data-nav="month-select" data-template="month"></div>
+        <div class="nav-btn" data-nav="month-next">&gt;</div>
+    </template>
+
+    <script type="module" src="static/js/main.js"></script>
+</body>
+</html>

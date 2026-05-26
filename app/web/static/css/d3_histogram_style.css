@@ -1,0 +1,87 @@
+/* Histogram's container */
+#d3histogram-container {
+    position: relative;
+    /* position: absolute; */
+    /* bottom: 0; */
+    /* left: 0; */
+    margin: 16px;
+    padding: 12px;
+    border-radius: 16px;
+    z-index: 2;
+}
+
+/* Histogram's title & subtitle */
+#d3histogram-title,
+#d3histogram-subtitle {
+    position: absolute;
+    top: 5px;
+    font-size: small;
+}
+#d3histogram-subtitle {
+    right: 15px;
+}
+
+/* Histogram's axes */
+.d3histogram-axis {
+    font-family: inherit;
+}
+.d3histogram-axis path {
+    display: none;
+}
+.d3histogram-axis .tick > line {
+    stroke-width: 0.5;
+}
+
+/* Histogram's interaction container */
+#d3histogram-interactioncontainer > .selection {
+    fill: #c2c2c2;
+    stroke: #cecece;
+    stroke-width: 0.5;
+}
+/* Specific override for the Histogram container */
+  #d3histogram-container {
+    border-radius: 0;
+    margin: 0;
+    padding: 0; /* Histogram usually handles its own padding */
+  }
+
+  @media (max-width: 768px) {
+    /* Ensure histogram inside mobile view matches background */
+    #d3histogram-container {
+        width: 100%;
+    }
+
+      #histogram-view {
+            width: 100%;
+            height: 100%; /* Fills the .mobile-view-container */
+            flex-direction: column;
+            /* Note: display:flex is applied via the .active class below or inline styles */
+        }
+
+        /* 2. Force the D3 Container to fill the wrapper */
+        #d3histogram-container {
+            width: 100% !important;
+            flex: 1; /* Grow to fill vertical space */
+            margin: 0 !important;
+            padding: 5px !important; /* Keep a tiny padding for axis labels */
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        /* 3. Force the SVG Chart to stretch */
+        #d3histogram-container svg {
+            width: 100% !important;
+            height: 100% !important;
+            /* Ensure it doesn't get capped by desktop defaults */
+            max-width: none !important;
+            max-height: none !important;
+            /* Ensure aspect ratio is handled nicely (optional) */
+            object-fit: contain;
+        }
+  }

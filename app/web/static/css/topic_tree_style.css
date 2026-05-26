@@ -1,0 +1,185 @@
+/* --- Topic Tree Base Styles --- */
+#topic-tree {
+    display: flex;
+    flex-direction: column;
+    padding: 0 !important; /* Override container-box padding */
+    overflow: hidden;
+    pointer-events: auto; /* Ensure clicks/scrolls are captured */
+}
+
+/* Add some padding to prevent scroll bar from overlapping content */
+#topic-tree-body > .nested {
+    display: block;
+    padding-right: 10px;
+}
+/* Add some padding to prevent scroll bar from overlapping content */
+#topic-tree > .nested {
+    display: block;
+    padding-right: 10px;
+}
+
+
+.topic-tree-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    cursor: pointer; /* Click header to toggle on mobile */
+    min-height: 40px;
+    flex-shrink: 0; /* Prevent header from shrinking when scrolling */
+}
+
+.topic-tree-header h3 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+}
+
+.topic-tree-tools {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.topic-tree-body {
+    transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    overflow-y: auto;
+    overflow-x: auto;
+    background: rgba(255,255,255,0.5);
+
+    /* Critical for scrolling: Prevent scroll chaining to the map */
+    overscroll-behavior: contain;
+
+    /* Default desktop state */
+    opacity: 1;
+    display: block;
+}
+
+.topic-tree-body > ul {
+    display: block !important;
+    margin-top: 5px;
+}
+
+/* --- Mobile Specific Overrides --- */
+@media (max-width: 768px) {
+    #topic-tree {
+        width: 100%; /* Full Width */
+        margin: 0;
+        border-radius: 0;
+        border-bottom: 1px solid #999;
+        /* Allow the container to define the space */
+        max-height: 70vh;
+    }
+
+    .topic-tree-body {
+        width: 100% !important;
+        max-width: none !important; /* Override JS inline styles */
+
+        /* THE FIX: Give it a maximum height so it scrolls instead of expanding infinitely */
+        max-height: 50vh;
+    }
+
+    /* Class used to hide body but keep header visible */
+    .topic-tree-body.collapsed {
+        max-height: 0 !important;
+        opacity: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+}
+
+/* --- Desktop Specific Overrides --- */
+@media (min-width: 769px) {
+    /* On desktop, the toggle button hides the WHOLE container usually,
+       but here we keep the header to match your requested structure */
+    .topic-tree-toggle-btn {
+        display: none; /* Or keep it if you want desktop toggle */
+    }
+
+    /* Ensure desktop has a constraint if not set by JS */
+    .topic-tree-body {
+        max-height: 50vh;
+    }
+
+    .topic-tree-body.collapsed {
+       max-height: 0 !important;
+       opacity: 0;
+       overflow: hidden;
+    }
+}
+
+/* --- List Items (Carets/Bullets) --- */
+.caret {
+    cursor: pointer;
+    user-select: none;
+    padding: 2px 4px;
+    border-radius: 3px;
+    opacity: 0.6; /* Increased slightly for visibility */
+    transition: opacity 0.3s ease;
+}
+
+.caret::before {
+    content: "\25B6";
+    display: inline-block;
+    margin-right: 6px;
+    transform: rotate(0deg);
+    transition: transform 0.2s; /* Smooth rotation */
+}
+
+.caret-down::before {
+    transform: rotate(90deg);
+}
+
+.caret.unlabeled::before {
+    content: "\25b7";
+}
+
+.bullet {
+    cursor: pointer;
+    user-select: none;
+    padding: 2px 4px;
+    border-radius: 3px;
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+}
+
+.bullet::before {
+    content: "\25CF";
+    display: inline-block;
+    margin-right: 6px;
+}
+
+.bullet.unlabeled::before {
+    content: "\25CB";
+}
+
+ul {
+    padding-inline-start: 20px; /* Indentation */
+    margin: 0;
+}
+
+li {
+    list-style-type: none;
+    margin: 5px 0;
+    white-space: nowrap; /* Prevent text wrapping for tree lines */
+}
+
+/* Interaction feedback */
+.topic-tree-label {
+    cursor: pointer;
+}
+.topic-tree-label:hover {
+    text-decoration: underline;
+}
+.highlighted {
+    opacity: 1.0;
+    transition: opacity 0.3s ease;
+}
+.nested {
+    display: none;
+}
+.nested.active {
+    display: block;
+}

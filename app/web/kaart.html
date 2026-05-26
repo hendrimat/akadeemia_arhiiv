@@ -1,0 +1,917 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AKADEEMIA KAART</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Jost:ital,wght@0,100..900;1,100..900&family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <style>
+    body{margin:0;padding:0;overflow:hidden}.container-box{background:#ffffff;border:1px solid rgba(0,0,0,0.1);pointer-events:auto;width:fit-content}input:focus{border-color:#333}#deck-container{width:100vw;height:100vh;position:fixed;top:0;left:0;z-index:0}.content-wrapper{position:relative;width:100%;height:100vh;height:100dvh;z-index:1;pointer-events:none}.content-wrapper{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto 1fr;padding:16px;box-sizing:border-box;gap:10px}.stack{display:flex;flex-direction:column;gap:10px;pointer-events:none}.top-left{grid-column:1;grid-row:1;justify-self:start;align-self:start}.top-right{grid-column:2;grid-row:1;justify-self:end;align-self:start;align-items:flex-end}.bottom-left{grid-column:1;grid-row:2;justify-self:start;align-self:end}.bottom-right{grid-column:2;grid-row:2;justify-self:end;align-self:end;align-items:flex-end}.mobile-controls{display:none}#logo-container{position:absolute;right:0;bottom:0;margin:8px 16px 8px 16px;z-index:0}@media (max-width:768px){.content-wrapper{display:flex;flex-direction:column;justify-content:space-between;padding:0;gap:0}.stack.top-left{flex:0 0 auto;background:rgba(255,255,255,0.8);width:100%;padding:8px;box-sizing:border-box;gap:8px}.stack.top-left .container-box{width:100%;border:none;background:transparent;padding:4px 0}.stack.top-left input{width:100%}.top-right,.bottom-left,.bottom-right{display:none!important}.mobile-controls{display:flex;flex-direction:column;flex:0 0 auto;pointer-events:auto;max-height:55vh;z-index:10}.mobile-view-switcher{display:flex;flex-direction:row;border-top:1px solid #bbb;background:#dfe3e8;height:50px;align-items:stretch}.tab-button{flex:1;border:none;border-right:1px solid #bbb;background:transparent;font-weight:bold;color:#555;cursor:pointer;border-radius:0}.tab-button.active{background:#cfd4d9;color:#000}.tab-wrapper{flex:1.75;position:relative;display:flex;align-items:center;justify-content:center;padding:0 5px}.mobile-view-container{flex:1;display:flex;flex-direction:column;justify-content:flex-end;background:#dfe3e8;max-height:50vh;overflow-y:auto;border-bottom:none}.mobile-view{display:none;width:100%;padding:0;border:none;max-height:none}.mobile-view.active{display:block}}#point-info-container{max-width:300px;max-height:300px;overflow-y:auto;z-index:200;background:rgba(255,255,255,0.95);box-shadow:0 4px 12px rgba(0,0,0,0.15)}@media (max-width:768px){#point-info-container{position:fixed!important;bottom:50px!important;width:auto!important;max-width:none!important;max-height:35vh!important;margin:1.5rem!important}}
+</style><style>
+    :root{--font-family-sans:'Josefin Sans',sans-serif;--font-family-serif:'Tinos',serif;--bg-color:#ffc9d6;--text-color:#020202;--text-color-muted:#47474a;--primary-color:#f387a1;--primary-focus-color:#ed708f;--secondary-color:#dfe3e8;--card-bg-color:#ffc9d6;--card-border-color:#ffc9d6;--card-section-bg-color:#ffc9d6;--error-color:#e53935;--border-radius:0.5rem;--spacing:0.5rem;--marker-gap:1rem}*,*::before,*::after{box-sizing:border-box}html{font-size:18px;scroll-behavior:smooth}body{font-family:var(--font-family-sans),sans-serif;background-color:var(--bg-color);color:var(--text-color);margin:0}hr{border:none;border-top:1px solid var(--text-color-muted);opacity:0.5}h1,h2,h3,h4,h5,h6{margin:0 0 0.5em 0;font-weight:300}h1{font-size:clamp(3rem,15vw,6rem)}h2{font-size:1.75rem}h4{font-size:1.25rem}p{margin:0 0 0.5em 0}a{color:var(--primary-color);text-decoration:none;transition:color 0.2s ease}a:hover,a:focus{color:var(--primary-focus-color)}em{font-style:italic}small{font-size:0.875em}.container{width:100%;margin-left:auto;margin-right:auto}body{display:block}.container{margin-left:auto;margin-right:auto}header{background-color:#0d1419;padding:calc(var(--spacing) * 3);text-align:center;position:relative;z-index:1111}header h1{color:var(--bg-color);margin-top:5rem;line-height:1;font-weight:400}main{padding:calc(var(--spacing) * 3)}input[type="search"]{width:85%;padding:0.75rem 1rem;font-family:inherit;font-size:1rem;color:var(--text-color);background:var(--bg-color)}details:not(:last-child){margin-bottom:var(--spacing)}summary{cursor:pointer;list-style:none}summary::-webkit-details-marker{display:none}.header-nav{display:flex;justify-content:space-between;align-items:center}.header-nav a{color:var(--bg-color);opacity:0.9;transition:opacity 0.2s ease}.header-nav a:hover,.header-nav a:focus{opacity:1;color:var(--bg-color)}.nav-links-left{display:flex;gap:1.5rem}.month-navigator{display:flex;justify-content:center;align-items:center;gap:0.5rem;font-size:1.75rem;font-weight:600;padding:1rem 0;top:0;background-color:var(--bg-color);z-index:10;user-select:none}.nav-btn,.nav-item{cursor:pointer;padding:0.25rem 0.5rem;transition:background-color 0.2s ease}.nav-btn:hover,.nav-item:hover{background-color:rgba(0,0,0,0.08)}.selector-popup{position:absolute;background-color:#fff;border:1px solid #ccc;box-shadow:0 4px 8px rgba(0,0,0,0.1);z-index:100;max-height:250px;overflow-y:auto;margin-top:0.5rem}.selector-popup div{padding:0.5rem 1.5rem;cursor:pointer}.selector-popup div:hover{background-color:#f0f0f0}.month-header{position:sticky;font-weight:600;top:0;padding:1rem 0;z-index:9;margin:0 0 1rem 0;background-color:var(--bg-color)}.article-card{display:flex;align-items:baseline;gap:var(--marker-gap)}.article-card:not(:last-child){margin-bottom:var(--spacing)}.article-card>details{flex-grow:1;margin-bottom:0.75em}.article-summary{display:flex;justify-content:space-between;align-items:flex-start;cursor:default}.article-summary .title{flex:1 1 6rem;min-width:0}.article-summary .author-info{flex:0 1 auto;margin-left:2rem;text-align:right}.article-summary .title p.has-pdf{cursor:pointer;transition:color 0.2s ease}.article-summary .title p.has-pdf:hover{color:var(--primary-color)}.details-marker{flex-shrink:0;transition:transform 0.2s ease-in-out;font-weight:500;color:var(--text-color-muted);cursor:pointer}.details-marker.is-open{transform:rotate(90deg)}.text-gray{color:var(--text-color-muted)}.abstract-container{margin-bottom:1rem;display:flex;flex-direction:column}.abstract-text{margin:0.5rem 0 0;font-family:"Tinos",serif;font-weight:400;font-style:italic;text-align:justify;color:var(--text-color-muted)}.abstract-text.is-clamped + .toggle-abstract-btn{display:inline-block}.abstract-text.is-clamped{overflow:hidden;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:4}.abstract-text:not(.is-clamped) + .toggle-abstract-btn{display:inline-block}.toggle-abstract-btn{align-self:flex-end;background:none;display:none;border:none;padding:0;margin-top:0.5rem;color:var(--text-color-muted);font-style:italic;font-weight:normal;font-family:inherit;font-size:0.9em;cursor:pointer}.toggle-abstract-btn:hover{color:var(--text-color);background:none}.recommendations-container{padding-bottom:1rem;font-size:0.9rem}.similar-articles-trigger{display:flex;align-items:baseline;gap:0.75rem;cursor:pointer;color:var(--text-color-muted);transition:color 0.2s ease;list-style:none}.similar-articles-trigger:hover{color:var(--text-color)}.recommendations-container[open]>.similar-articles-trigger .details-marker{transform:rotate(90deg)}.goto-article-btn{background:none;margin-top:0.5rem;color:var(--text-color-muted);font-style:normal;font-weight:normal;font-family:inherit;cursor:pointer}.goto-article-btn:hover{color:var(--text-color);background:none}.status-error{color:var(--error-color);font-weight:bold}#articles-container{min-height:100vh}
+</style><style>
+    #d3histogram-container{position:relative;margin:16px;padding:12px;border-radius:16px;z-index:2}#d3histogram-title,#d3histogram-subtitle{position:absolute;top:5px;font-size:small}#d3histogram-subtitle{right:15px}.d3histogram-axis{font-family:inherit}.d3histogram-axis path{display:none}.d3histogram-axis .tick>line{stroke-width:0.5}#d3histogram-interactioncontainer>.selection{fill:#c2c2c2;stroke:#cecece;stroke-width:0.5}#d3histogram-container{border-radius:0;margin:0;padding:0}@media (max-width:768px){#d3histogram-container{width:100%}#histogram-view{width:100%;height:100%;flex-direction:column}#d3histogram-container{width:100%!important;flex:1;margin:0!important;padding:5px!important;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;justify-content:center;background:transparent!important;border:none!important;box-shadow:none!important}#d3histogram-container svg{width:100%!important;height:100%!important;max-width:none!important;max-height:none!important;object-fit:contain}}
+</style><style>
+    .datamapplot-progress-container{position:absolute;bottom:0;left:50%;transform:translate(-50%,0);width:512px;z-index:101}.datamapplot-progress-bar{width:100%;padding:3px;border-radius:6px;box-shadow:inset 0 1px 3px rgba(128,128,128,.2);margin-bottom:10px}.datamapplot-progress-bar-fill{display:block;height:12px;background-color:#659cef;border-radius:4px;transition:width 500ms ease-in-out}.datamapplot-progress-bar-text{color:white;text-align:center;line-height:12px;font-size:10px;overflow-x:visible;white-space:nowrap;vertical-align:top}
+</style><style>
+    #colormap-selector-container{position:relative;z-index:100}.color-map-dropdown{background-color:inherit;z-index:100;position:relative}.color-map-selected{display:flex;align-items:center;padding:10px;cursor:pointer;width:100%;box-sizing:border-box;position:relative;z-index:100}.color-map-options{position:absolute;top:100%;left:0;width:100%;max-height:500px;overflow-y:auto;display:none;background-color:inherit;box-sizing:border-box;z-index:101}.color-map-option{position:relative;display:flex;align-items:center;padding:10px;cursor:pointer;z-index:102;background-color:inherit;backdrop-filter:blur(6px)}.color-map-option:hover{background-color:#77777744;backdrop-filter:blur(6px)}.color-swatch{display:inline-block;width:fit-content;height:20px;margin-right:10px;border-radius:4px}.color-swatch-box{display:inline-block;width:12px;height:12px;text-align:center;line-height:10px;cursor:pointer}.color-map-text{flex-grow:1}.colorbar-container{display:flex;align-items:center;width:fit-content;gap:4px;padding:10px;height:200px;margin:4px 16px 4px 16px}.color-legend-container{display:flex;flex-direction:row;flex-wrap:wrap;align-items:center;gap:15px;width:100%;padding:15px;box-sizing:border-box}.legend-item{display:flex;align-items:center;gap:6px;padding:4px 8px;border:1px solid transparent}.colorbar-container{display:flex;flex-direction:column;align-items:center;width:auto;height:auto;margin:10px auto}.colorbar{width:100%;height:15px;position:relative;border-radius:3px}.colorbar-tick-container{position:relative;width:100%;height:20px;margin-top:2px}.colorbar-tick{position:absolute;display:flex;flex-direction:column;align-items:center;transform:translateX(-50%)}.colorbar-tick-line{width:1px;height:5px;background:#333}.colorbar-tick-label{font-size:11px;white-space:nowrap}.legend-label{font-size:12px}@media (max-width:768px){#colormap-view #legend-container.container-box{width:100%!important;margin:0!important;border:none!important;background:transparent!important;box-shadow:none!important;border-radius:0}#colormap-selector-container{width:100%!important;margin:0;padding:0;border:none;position:static}.color-map-dropdown{width:100%!important;border:none;position:static}.color-map-selected{display:flex!important;align-items:center;justify-content:space-between;border:none;background:transparent;padding:0;height:100%;width:100%}.color-map-selected-face{display:flex;align-items:center;justify-content:center;flex-grow:1;height:100%;padding:0 10px;cursor:pointer}.color-map-selected-face:active{background-color:rgba(0,0,0,0.05)}.dropdown-arrow{display:flex;align-items:center;justify-content:center;height:100%;padding:0 15px;border-left:1px solid #bbb;cursor:pointer;margin:0!important}.color-map-options{position:absolute;top:auto!important;bottom:100%!important;left:0;right:0;width:100%!important;max-height:40vh;border-top:1px solid #999;background:#f0f4f8;box-shadow:0 -5px 15px rgba(0,0,0,0.2);z-index:9999}}
+</style><style>
+    #topic-tree{display:flex;flex-direction:column;padding:0!important;overflow:hidden;pointer-events:auto}#topic-tree-body>.nested{display:block;padding-right:10px}#topic-tree>.nested{display:block;padding-right:10px}.topic-tree-header{display:flex;justify-content:space-between;align-items:center;padding:10px;border-bottom:1px solid rgba(0,0,0,0.1);cursor:pointer;min-height:40px;flex-shrink:0}.topic-tree-header h3{margin:0;font-size:14px;font-weight:bold;color:#333}.topic-tree-tools{display:flex;align-items:center;gap:10px}.topic-tree-body{transition:max-height 0.3s ease-in-out,opacity 0.3s ease-in-out;overflow-y:auto;overflow-x:auto;background:rgba(255,255,255,0.5);overscroll-behavior:contain;opacity:1;display:block}.topic-tree-body>ul{display:block!important;margin-top:5px}@media (max-width:768px){#topic-tree{width:100%;margin:0;border-radius:0;border-bottom:1px solid #999;max-height:70vh}.topic-tree-body{width:100%!important;max-width:none!important;max-height:50vh}.topic-tree-body.collapsed{max-height:0!important;opacity:0;padding:0;overflow:hidden}}@media (min-width:769px){.topic-tree-toggle-btn{display:none}.topic-tree-body{max-height:50vh}.topic-tree-body.collapsed{max-height:0!important;opacity:0;overflow:hidden}}.caret{cursor:pointer;user-select:none;padding:2px 4px;border-radius:3px;opacity:0.6;transition:opacity 0.3s ease}.caret::before{content:"\25B6";display:inline-block;margin-right:6px;transform:rotate(0deg);transition:transform 0.2s}.caret-down::before{transform:rotate(90deg)}.caret.unlabeled::before{content:"\25b7"}.bullet{cursor:pointer;user-select:none;padding:2px 4px;border-radius:3px;opacity:0.6;transition:opacity 0.3s ease}.bullet::before{content:"\25CF";display:inline-block;margin-right:6px}.bullet.unlabeled::before{content:"\25CB"}ul{padding-inline-start:20px;margin:0}li{list-style-type:none;margin:5px 0;white-space:nowrap}.topic-tree-label{cursor:pointer}.topic-tree-label:hover{text-decoration:underline}.highlighted{opacity:1.0;transition:opacity 0.3s ease}.nested{display:none}.nested.active{display:block}
+</style>
+<style>
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background: #ffffff;
+        font-family: Josefin Sans;
+        color: #000000;
+    }
+
+    body {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .header-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .nav-links-left a, .header-nav > a {
+        color: white;
+        text-decoration: none;
+        margin-right: 20px;
+        font-family: 'Josefin Sans', sans-serif;
+    }
+
+    .container {
+        flex: 1; /* Grow to fill available space */
+        position: relative; /* Needed for child absolute positioning */
+        display: flex;
+        flex-direction: column;
+    }
+
+    #deck-container {
+        flex: 1;
+        position: relative;
+    }
+
+    #deck-container canvas {
+        background: #ffffff;
+    }
+
+    .content-wrapper {
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        pointer-events: none; /* Pierce through the main wrapper */
+    }
+
+    .stack {
+        /* Prevent the div from expanding beyond the width/height of its children */
+        width: max-content;
+        height: max-content;
+        pointer-events: auto;
+    }
+
+    /* Specifically re-enable interactions ONLY for the actual UI components */
+    .content-wrapper .container-box,
+    .content-wrapper .mobile-controls,
+    .content-wrapper .tab-button {
+        pointer-events: auto;
+    }
+
+</style>
+  </head>
+  <body>
+  <header>
+            <nav class="header-nav">
+                <div class="nav-links-left">
+                    <a href="index.html">NUMBRID</a>
+                    <a href="kaart.html">KAART</a>
+                </div>
+                <a href="#">LEHEST</a>
+            </nav>
+    </header>
+  <div class="container">
+    <div id="loading">
+    <img id="loading-image" alt="Loading..." width="5%" />
+</div>
+<div id="deck-container"></div>
+
+<div class="content-wrapper">
+
+    <div class="stack top-left">
+    
+
+    
+    <div id="search-container" class="container-box">
+        <input autocomplete="off" type="search" id="text-search" placeholder="Search..." />
+    </div>
+    
+
+    <div id="label-toggle-container" class="container-box">
+        <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 14px; user-select: none;">
+            <input type="checkbox" id="label-toggle" checked />
+            Teemad
+        </label>
+    </div>
+
+    
+    <div id="topic-tree" class="container-box"></div>
+    
+    </div>
+
+    <div class="stack top-right">
+    <div id="colormap-selector-container" class="container-box"></div><div id="legend-container" class="container-box" style="display:none;"></div>
+    </div>
+
+    <div class="stack bottom-left">
+    <div id="d3histogram-container" class="container-box"></div></div>
+
+    <div class="stack bottom-right">
+        <div id="point-info-container" class="container-box" style="display:none;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:5px; border-bottom:1px solid rgba(0,0,0,0.1); padding-bottom:5px;">
+                <span id="point-header-meta" class="text-gray" style="font-size: 0.8em; text-transform: uppercase;"></span>
+                <span id="point-info-close" style="cursor:pointer; font-weight:bold; font-size:1.5rem; line-height:0.8;">&times;</span>
+            </div>
+            <div id="point-info-content"></div>
+        </div>
+    </div>
+
+    <div class="mobile-controls">
+    <div class="mobile-view-container">
+        <div id="histogram-view" class="mobile-view"></div>
+        <div id="colormap-view" class="mobile-view"></div>
+    </div>
+
+    <div class="mobile-view-switcher">
+        
+        <button id="mobile-hist-btn" class="tab-button" onclick="toggleMobileView('histogram-view')">
+        AJAJOON
+        </button>
+        
+
+        
+        <div id="mobile-colormap-tab-target" class="tab-wrapper"></div>
+        
+    </div>
+    </div>
+
+</div>
+    
+<div id="progress-container" class="datamapplot-progress-container container-box">
+    <div id="point-data-progress" class="datamapplot-progress-bar">
+    <span class="datamapplot-progress-bar-fill" style="width: 0%;">
+        <span class="datamapplot-progress-bar-text">Point Data: 0%</span>
+    </span>
+    </div>
+    <div id="label-data-progress" class="datamapplot-progress-bar">
+    <span class="datamapplot-progress-bar-fill" style="width: 0%;">
+        <span class="datamapplot-progress-bar-text">Label Data: 0%</span>
+    </span>
+    </div>
+    <div id="meta-data-progress" class="datamapplot-progress-bar">
+    <span class="datamapplot-progress-bar-fill" style="width: 0%;">
+        <span class="datamapplot-progress-bar-text">Meta Data: 0%</span>
+    </span>
+    </div>
+    <div id="histogram-bin-data-progress" class="datamapplot-progress-bar">
+    <span class="datamapplot-progress-bar-fill" style="width: 0%;">
+        <span class="datamapplot-progress-bar-text">Histogram Bin Data: 0%</span>
+    </span>
+    </div>
+    <div id="histogram-index-data-progress" class="datamapplot-progress-bar">
+    <span class="datamapplot-progress-bar-fill" style="width: 0%;">
+        <span class="datamapplot-progress-bar-text">Histogram Index Data: 0%</span>
+    </span>
+    </div>
+    <div id="color-data-progress" class="datamapplot-progress-bar">
+    <span class="datamapplot-progress-bar-fill" style="width: 0%;">
+        <span class="datamapplot-progress-bar-text">Colormap Data: 0%</span>
+    </span>
+    </div>
+</div>
+
+    
+  <script>
+    let activeMobileViewId=null;window.toggleMobileView=function(viewId){const view=document.getElementById(viewId);const histBtn=document.getElementById('mobile-hist-btn');const cmapFace=document.querySelector('.color-map-selected-face');if(activeMobileViewId===viewId){view.classList.remove('active');if(viewId==='histogram-view'&&histBtn)histBtn.classList.remove('active');if(viewId==='colormap-view'&&cmapFace)cmapFace.parentElement.classList.remove('active-tab-bg');activeMobileViewId=null;}else{if(activeMobileViewId){document.getElementById(activeMobileViewId).classList.remove('active');if(activeMobileViewId==='histogram-view'&&histBtn)histBtn.classList.remove('active');if(activeMobileViewId==='colormap-view'&&cmapFace)cmapFace.parentElement.classList.remove('active-tab-bg');}
+view.classList.add('active');if(viewId==='histogram-view'&&histBtn)histBtn.classList.add('active');if(viewId==='colormap-view'&&cmapFace)cmapFace.parentElement.classList.add('active-tab-bg');activeMobileViewId=viewId;setTimeout(()=>{window.dispatchEvent(new Event('resize'));},50);}};function restructureColormapForMobile(){const colormapSelector=document.getElementById('colormap-selector-container');const colormapTabTarget=document.getElementById('mobile-colormap-tab-target');if(!colormapSelector||!colormapTabTarget)return;colormapTabTarget.appendChild(colormapSelector);const interval=setInterval(()=>{const dropdown=colormapSelector.querySelector('.color-map-dropdown');const swatch=document.getElementById('selectedColorSwatch');const text=document.getElementById('selectedColorMapText');const arrow=colormapSelector.querySelector('.dropdown-arrow');const optionsMenu=document.getElementById('colorMapOptions');const selectedBox=colormapSelector.querySelector('.color-map-selected');if(dropdown&&swatch&&text&&arrow&&selectedBox){clearInterval(interval);const faceContent=document.createElement('div');faceContent.className='color-map-selected-face';faceContent.appendChild(swatch);faceContent.appendChild(text);selectedBox.innerHTML='';selectedBox.appendChild(faceContent);selectedBox.appendChild(arrow);const newDropdown=dropdown.cloneNode(true);dropdown.parentNode.replaceChild(newDropdown,dropdown);const newFace=newDropdown.querySelector('.color-map-selected-face');const newArrow=newDropdown.querySelector('.dropdown-arrow');const newOptions=newDropdown.querySelector('.color-map-options');const newOptionsItems=newDropdown.querySelectorAll('.color-map-option');newFace.addEventListener('click',(e)=>{e.stopPropagation();newOptions.style.display='none';toggleMobileView('colormap-view');});newArrow.addEventListener('click',(e)=>{e.stopPropagation();const isHidden=newOptions.style.display==='none';newOptions.style.display=isHidden?'block':'none';});newOptionsItems.forEach(opt=>{opt.addEventListener('click',()=>{newOptions.style.display='none';});});}},50);}
+document.addEventListener('DOMContentLoaded',function(){const isMobile=window.matchMedia("(max-width: 768px)").matches;if(isMobile){const histContainer=document.getElementById('d3histogram-container');const histView=document.getElementById('histogram-view');if(histContainer&&histView)histView.appendChild(histContainer);const legContainer=document.getElementById('legend-container');const cmapView=document.getElementById('colormap-view');if(legContainer&&cmapView)cmapView.appendChild(legContainer);restructureColormapForMobile();}});
+  </script>
+  <script>
+    const FontUtils={async waitForFont(fontName){try{await document.fonts.load(`12px "${fontName}"`);}catch(error){console.warn(`Font ${fontName} failed to load:`,error);}}};class SpatialGrid{constructor(cellSize){this.cellSize=cellSize;this.grid=new Map();}
+_getKey(x,y){const gx=Math.floor(x/this.cellSize);const gy=Math.floor(y/this.cellSize);return`${gx},${gy}`;}
+insert(item){const key=this._getKey(item.x,item.y);if(!this.grid.has(key)){this.grid.set(key,[]);}
+this.grid.get(key).push(item);}*getNeighbors(item){const gx=Math.floor(item.x/this.cellSize);const gy=Math.floor(item.y/this.cellSize);for(let x=gx-1;x<=gx+1;x++){for(let y=gy-1;y<=gy+1;y++){const cellItems=this.grid.get(`${x},${y}`);if(cellItems){for(const neighbor of cellItems){if(neighbor!==item)yield neighbor;}}}}}}
+class LabelThresholdCalculator{constructor(config){this.viewportWidth=config.viewportWidth;this.viewportHeight=config.viewportHeight;this.fontFamily=config.fontFamily||'Roboto';this.minSize=config.minSize||12;this.ctx=document.createElement('canvas').getContext('2d');this.viewport=new deck.WebMercatorViewport({width:this.viewportWidth,height:this.viewportHeight,longitude:0,latitude:0,zoom:0});}
+_measureDimensions(text,fontSize){this.ctx.font=`400 ${fontSize}px ${this.fontFamily}`;const metrics=this.ctx.measureText(text);const padding=4;return{width:metrics.width+padding,height:fontSize+padding,halfWidth:(metrics.width+padding)/2,halfHeight:(fontSize+padding)/2};}
+calculateThreshold(layerData){if(!layerData||layerData.length<2)return 0;let maxDimension=0;const items=layerData.map(d=>{const[px,py]=this.viewport.project([d.x,d.y]);const sizePx=d.size?d.size:this.minSize;const dim=this._measureDimensions(d.label,Math.max(sizePx,this.minSize));if(dim.width>maxDimension)maxDimension=dim.width;return{x:px,y:py,...dim};});const grid=new SpatialGrid(maxDimension);items.forEach(p=>grid.insert(p));const requiredZooms=[];for(const p1 of items){for(const p2 of grid.getNeighbors(p1)){if(p1.x>=p2.x)continue;const dx=Math.abs(p1.x-p2.x);const dy=Math.abs(p1.y-p2.y);const reqW=p1.halfWidth+p2.halfWidth;const reqH=p1.halfHeight+p2.halfHeight;if(dx>reqW||dy>reqH)continue;const zoomX=Math.log2(reqW/Math.max(dx,0.00001));const zoomY=Math.log2(reqH/Math.max(dy,0.00001));const pairThreshold=Math.min(zoomX,zoomY);requiredZooms.push(pairThreshold);}}
+if(requiredZooms.length===0)return 0;const sorted=new Float32Array(requiredZooms).sort();const percentileIndex=Math.floor(sorted.length*0.999);return sorted[percentileIndex];}}
+const LayerFactory={createPoints(id,dataAttributes,options,state){const{pointSize,pointOutlineColor,pointLineWidth,pointHoverColor,pointLineWidthMaxPixels,pointLineWidthMinPixels,pointRadiusMaxPixels,pointRadiusMinPixels}=options;const easing=(typeof d3!=='undefined'&&d3.easeCubicInOut)?d3.easeCubicInOut:null;return new deck.ScatterplotLayer({id,data:{length:state.numPoints,attributes:dataAttributes},getRadius:pointSize,getLineColor:pointOutlineColor,getLineWidth:pointLineWidth,highlightColor:pointHoverColor,lineWidthMaxPixels:pointLineWidthMaxPixels,lineWidthMinPixels:pointLineWidthMinPixels,radiusMaxPixels:pointRadiusMaxPixels,radiusMinPixels:pointRadiusMinPixels,radiusUnits:"common",lineWidthUnits:"common",autoHighlight:true,pickable:true,stroked:true,extensions:[new deck.DataFilterExtension({filterSize:1})],filterRange:[-0.5,1.5],filterSoftRange:[0.75,1.25],updateTriggers:{getFilterValue:state.updateTriggerCounter,radiusMinPixels:state.updateTriggerCounter,getFillColor:state.updateTriggerCounter},instanceCount:state.numPoints,parameters:{depthTest:false},transitions:easing?{getFillColor:{duration:1500,easing:easing}}:{}});},createEdges(id,attributes,options,numEdges){return new deck.LineLayer({id,data:{length:numEdges,attributes:attributes},getSourcePosition:d=>[d.source.x,d.source.y],getTargetPosition:d=>[d.target.x,d.target.y],getWidth:options.edgeWidth,});},createBoundaries(id,data,options){return new deck.PolygonLayer({id,data,stroked:true,filled:false,getLineColor:d=>[d.r,d.g,d.b,d.a],getPolygon:d=>d.polygon,lineWidthUnits:"common",getLineWidth:d=>d.size*d.size,lineWidthScale:options.clusterBoundaryLineWidth*5e-5,lineJointRounded:true,lineWidthMaxPixels:4,lineWidthMinPixels:0.0,instanceCount:data.length,parameters:{depthTest:false}});},createLabels(id,data,visible,options){const{labelTextColor,textMinPixelSize,textMaxPixelSize,textOutlineWidth,textOutlineColor,textBackgroundColor,fontFamily,fontWeight,lineSpacing,pickable}=options;return new deck.TextLayer({id,visible,data,pickable,getPosition:d=>[d.x,d.y],getText:d=>d.label,getSize:d=>d.size,getColor:labelTextColor,sizeScale:1,sizeMinPixels:textMinPixelSize,sizeMaxPixels:textMaxPixelSize,outlineWidth:textOutlineWidth,outlineColor:textOutlineColor,getBackgroundColor:textBackgroundColor,getBackgroundPadding:[15,15,15,15],background:true,characterSet:"auto",fontFamily:fontFamily,fontWeight:fontWeight,lineHeight:lineSpacing,fontSettings:{sdf:false},getTextAnchor:"middle",getAlignmentBaseline:"center",elevation:100,parameters:{depthTest:false}});},createImage(id,image,bounds){return new deck.BitmapLayer({id,bounds,image,parameters:{depthTest:false}});}};function calculateZoomLevel(bounds,viewportWidth,viewportHeight,padding=0.5){const lngRange=bounds[1]-bounds[0];const latRange=bounds[3]-bounds[2];const centerLng=(bounds[0]+bounds[1])/2;const centerLat=(bounds[2]+bounds[3])/2;const zoomX=Math.log2(360/(lngRange/(viewportWidth/256)));const zoomY=Math.log2(180/(latRange/(viewportHeight/256)));const zoom=Math.min(zoomX,zoomY)-padding;return{zoomLevel:zoom,dataCenter:[centerLng,centerLat]};}
+class DataMap{constructor({container,bounds,searchItemId="text-search",lassoSelectionItemId="lasso-selection",}){this.container=container;this.searchItemId=searchItemId;this.lassoSelectionItemId=lassoSelectionItemId;this.metaData=null;this.searchArray=[];this.layers=[];this.labelGroups=[];this.currentVisibleLabelIndex=-1;this.updateTriggerCounter=0;this.selected=null;this.originalColors=null;this.pointConfig={};this.showCollisionDebug=false;this.areLabelsVisible=true;const viewportWidth=this.container.clientWidth;const viewportHeight=this.container.clientHeight;const{zoomLevel,dataCenter}=calculateZoomLevel(bounds,viewportWidth,viewportHeight);this.internalViewState={latitude:dataCenter[1],longitude:dataCenter[0],zoom:zoomLevel};this.thresholdCalculator=new LabelThresholdCalculator({viewportWidth,viewportHeight,fontFamily:"Josefin Sans"});this.deckgl=new deck.DeckGL({container:container,viewState:this.internalViewState,onViewStateChange:this._onViewStateChange.bind(this),controller:{scrollZoom:{speed:0.01,smooth:true},inertia:true,dragRotate:false,touchRotate:false,},});window.addEventListener('resize',this._onResize.bind(this));if(typeof DataSelectionManager!=='undefined'){this.dataSelectionManager=new DataSelectionManager(lassoSelectionItemId);}else{console.warn("DataSelectionManager not found. Selection features may fail.");}}
+toggleLabels(isVisible){this.areLabelsVisible=isVisible;this._updateLayerList();}
+_onViewStateChange({viewState}){this.internalViewState=viewState;const visibilityChanged=this._shouldSwitchLabelLayers(viewState.zoom);if(visibilityChanged){this._updateLayerList();}else{this.deckgl.setProps({viewState:this.internalViewState});}}
+_onResize(){const viewportWidth=this.container.clientWidth;const viewportHeight=this.container.clientHeight;this.thresholdCalculator.viewportWidth=viewportWidth;this.thresholdCalculator.viewportHeight=viewportHeight;this.deckgl.setProps({width:viewportWidth,height:viewportHeight});this._onViewStateChange({viewState:this.internalViewState});}
+flyTo(viewState,duration=1000){this.internalViewState={...this.internalViewState,...viewState,transitionDuration:duration,transitionInterpolator:new deck.FlyToInterpolator(),transitionEasing:(typeof d3!=='undefined')?d3.easeCubic:undefined};this.deckgl.setProps({viewState:this.internalViewState});this._onViewStateChange({viewState:this.internalViewState});}
+flyToBounds(bounds,padding=0.5,duration=1000){const viewportWidth=this.container.clientWidth;const viewportHeight=this.container.clientHeight;const{zoomLevel,dataCenter}=calculateZoomLevel(bounds,viewportWidth,viewportHeight,padding);this.flyTo({longitude:dataCenter[0],latitude:dataCenter[1],zoom:zoomLevel},duration);}
+addPoints(pointData,options){const{pointSize}=options;const numPoints=pointData.x.length;const positions=new Float32Array(numPoints*2);const colors=new Uint8Array(numPoints*4);const variableSize=pointSize<0;const sizes=variableSize?new Float32Array(numPoints):null;for(let i=0;i<numPoints;i++){positions[i*2]=pointData.x[i];positions[i*2+1]=pointData.y[i];colors[i*4]=pointData.r[i];colors[i*4+1]=pointData.g[i];colors[i*4+2]=pointData.b[i];colors[i*4+3]=pointData.a[i];if(variableSize)sizes[i]=pointData.size[i];}
+this.originalColors=colors;this.selected=new Float32Array(numPoints).fill(1.0);this.pointConfig={...options,variableSize};this.pointAttributes={getPosition:{value:positions,size:2},getFillColor:{value:colors,size:4},getFilterValue:{value:this.selected,size:1}};if(variableSize){this.pointAttributes.getRadius={value:sizes,size:1};}
+this.pointLayer=LayerFactory.createPoints('dataPointLayer',this.pointAttributes,this.pointConfig,{numPoints,updateTriggerCounter:this.updateTriggerCounter});this._addOrReplaceLayer(this.pointLayer);}
+async addLabels(labelDataArray,options){if(!labelDataArray.length)return;const{fontFamily="Josefin Sans",textMinPixelSize=18,noiseLabel="Outlier"}=options;this.thresholdCalculator.fontFamily=fontFamily;this.thresholdCalculator.minSize=textMinPixelSize;await FontUtils.waitForFont(fontFamily);console.time("Label Threshold Calculation");this.labelGroups=labelDataArray.map((data,i)=>{const cleanData=data.filter(d=>d.label!==noiseLabel);const threshold=this.thresholdCalculator.calculateThreshold(cleanData);return{id:`labelLayer-${i}`,data:cleanData,threshold:threshold,options:options};});console.timeEnd("Label Threshold Calculation");console.log("Zoom Thresholds:",this.labelGroups.map(g=>g.threshold));this._shouldSwitchLabelLayers(this.internalViewState.zoom);this._updateLayerList();}
+_shouldSwitchLabelLayers(zoom){if(!this.labelGroups.length)return false;let visibleIndex=0;for(let i=this.labelGroups.length-1;i>=0;i--){if(zoom>=this.labelGroups[i].threshold){visibleIndex=i;break;}}
+if(visibleIndex!==this.currentVisibleLabelIndex){console.log(`Switching labels: Layer ${visibleIndex} (Zoom > ${this.labelGroups[visibleIndex]?.threshold.toFixed(2)})`);this.currentVisibleLabelIndex=visibleIndex;return true;}
+return false;}
+addEdges(edgeData,options){const numEdges=edgeData.r.length;const sourcePosition=new Float32Array(numEdges*2);const targetPosition=new Float32Array(numEdges*2);const colors=new Uint8Array(numEdges*4);for(let i=0;i<numEdges;i++){sourcePosition[i*2]=edgeData.x1[i];sourcePosition[i*2+1]=edgeData.y1[i];targetPosition[i*2]=edgeData.x2[i];targetPosition[i*2+1]=edgeData.y2[i];colors[i*4]=edgeData.r[i];colors[i*4+1]=edgeData.g[i];colors[i*4+2]=edgeData.b[i];colors[i*4+3]=180;}
+const attributes={getSourcePosition:{value:sourcePosition,size:2},getTargetPosition:{value:targetPosition,size:2},getColor:{value:colors,size:4},};this.edgeLayer=LayerFactory.createEdges('edgeLayer',attributes,options,numEdges);this._addOrReplaceLayer(this.edgeLayer);}
+addBoundaries(boundaryData,options){this.boundaryLayer=LayerFactory.createBoundaries('boundaryLayer',boundaryData,options);this._addOrReplaceLayer(this.boundaryLayer);}
+addBackgroundImage(image,bounds){this.imageLayer=LayerFactory.createImage('imageLayer',image,bounds);this._addOrReplaceLayer(this.imageLayer);}
+addMetaData(metaData,{tooltipFunction,onClickFunction,searchField}){this.metaData=metaData;this.tooltipFunction=tooltipFunction||(({index})=>this.metaData.hover_text[index]);this.onClickFunction=onClickFunction;this.searchField=searchField;const props={};if(this.metaData.hasOwnProperty('hover_text'))props.getTooltip=this.tooltipFunction;if(this.onClickFunction)props.onClick=this.onClickFunction;this.deckgl.setProps(props);if(this.searchField){this.searchArray=this.metaData[this.searchField].map(d=>d.toLowerCase());}}
+_addOrReplaceLayer(newLayer){const idx=this.layers.findIndex(l=>l.id===newLayer.id);if(idx>=0){this.layers[idx]=newLayer;}else{this.layers.push(newLayer);}
+this._updateLayerList();}
+_updateLayerList(){const LAYER_ORDER=['imageLayer','dataPointLayer','boundaryLayer','labelLayer','debug-collision-polygons'];let finalLayers=this.layers.filter(l=>!l.id.startsWith('labelLayer')&&l.id!=='debug-collision-polygons');if(this.areLabelsVisible&&this.labelGroups.length>0&&this.currentVisibleLabelIndex>=0){const group=this.labelGroups[this.currentVisibleLabelIndex];const labelLayer=LayerFactory.createLabels(group.id,group.data,true,group.options);finalLayers.push(labelLayer);if(this.showCollisionDebug){const{clientWidth,clientHeight}=this.container;const currentViewport=new deck.WebMercatorViewport({...this.internalViewState,width:clientWidth||1000,height:clientHeight||1000});const debugData=group.data.map(d=>{const sizePx=d.size?d.size:this.thresholdCalculator.minSize;const dim=this.thresholdCalculator._measureDimensions(d.label,Math.max(sizePx,this.thresholdCalculator.minSize));const w=dim.width;const h=dim.height;const[cx,cy]=currentViewport.project([d.x,d.y]);const tl=currentViewport.unproject([cx-w/2,cy-h/2]);const tr=currentViewport.unproject([cx+w/2,cy-h/2]);const br=currentViewport.unproject([cx+w/2,cy+h/2]);const bl=currentViewport.unproject([cx-w/2,cy+h/2]);return{polygon:[tl,tr,br,bl]};});const debugPolygonLayer=new deck.PolygonLayer({id:'debug-collision-polygons',data:debugData,getPolygon:d=>d.polygon,getFillColor:[255,0,0,40],getLineColor:[255,0,0,200],getLineWidth:1,lineWidthUnits:'pixels',stroked:true,filled:true,pickable:false,parameters:{depthTest:false}});finalLayers.push(debugPolygonLayer);}}
+finalLayers.sort((a,b)=>{const getSortId=(layer)=>{if(layer.id.startsWith('labelLayer'))return'labelLayer';if(layer.id==='debug-collision-polygons')return'debug-collision-polygons';return layer.id;};return LAYER_ORDER.indexOf(getSortId(a))-LAYER_ORDER.indexOf(getSortId(b));});const pt=finalLayers.find(l=>l.id==='dataPointLayer');if(pt)this.pointLayer=pt;this.deckgl.setProps({viewState:this.internalViewState,layers:finalLayers});this.layers=finalLayers;}
+connectHistogram(histogramItem){this.histogramItem=histogramItem;this.histogramItemId=histogramItem.state.chart.chartContainerId;}
+async addSelectionHandler(callback,selectionKind="lasso-selection",timeoutMs=60000){const startTime=Date.now();if(selectionKind==="lasso-selection"){while(!this.lassoSelector){if(Date.now()-startTime>timeoutMs)throw new Error('Timeout: lassoSelector');await new Promise(resolve=>setTimeout(resolve,1000));}
+this.lassoSelector.registerSelectionHandler(callback);}else{if(!this.selectionCallbacks)this.selectionCallbacks={};(this.selectionCallbacks[selectionKind]||=[]).push(callback);}}
+highlightPoints(itemId){if(!this.dataSelectionManager)return;const selectedIndices=this.dataSelectionManager.getSelectedIndices();const semiSelectedIndices=this.dataSelectionManager.getBasicSelectedIndices();const hasSelectedIndices=selectedIndices.size!==0;const hasSemiSelectedIndices=semiSelectedIndices.size!==0;const hasLassoSelection=this.dataSelectionManager.hasSpecialSelection();if(hasLassoSelection){if(hasSelectedIndices){if(hasSemiSelectedIndices){this.selected.fill(-1.0);for(let i of semiSelectedIndices)this.selected[i]=0.0;}else{this.selected.fill(0.0);}
+for(let i of selectedIndices)this.selected[i]=1.0;}else{this.selected.fill(1.0);}}else{this.selected.fill(hasSelectedIndices?-1.0:1.0);if(hasSelectedIndices){for(let i of selectedIndices)this.selected[i]=1.0;}}
+this.updateTriggerCounter++;const sizeAdjust=1/(1+(Math.sqrt(selectedIndices.size)/Math.log2(this.selected.length)));const newMinRadius=hasSelectedIndices?2*(this.pointConfig.pointRadiusMinPixels+sizeAdjust):this.pointConfig.pointRadiusMinPixels;const currentConfig={...this.pointConfig,pointRadiusMinPixels:newMinRadius};this.pointAttributes={...this.pointAttributes,getFilterValue:{value:this.selected,size:1}};const updatedLayer=LayerFactory.createPoints('dataPointLayer',this.pointAttributes,currentConfig,{numPoints:this.selected.length,updateTriggerCounter:this.updateTriggerCounter});this._addOrReplaceLayer(updatedLayer);if(this.histogramItem&&itemId!==this.histogramItemId){hasSelectedIndices?this.histogramItem.drawChartWithSelection(selectedIndices):this.histogramItem.removeChartWithSelection(selectedIndices);}}
+addSelection(selectedIndices,selectionKind){if(!this.dataSelectionManager)return;this.dataSelectionManager.addOrUpdateSelectedIndicesOfItem(selectedIndices,selectionKind);this.highlightPoints(selectionKind);this._triggerCallbacks(selectionKind);}
+removeSelection(selectionKind){if(!this.dataSelectionManager)return;this.dataSelectionManager.removeSelectedIndicesOfItem(selectionKind);this.highlightPoints(selectionKind);this._triggerCallbacks(selectionKind);}
+_triggerCallbacks(selectionKind){if(this.selectionCallbacks&&this.selectionCallbacks[selectionKind]&&this.dataSelectionManager){const indices=Array.from(this.dataSelectionManager.getSelectedIndices());this.selectionCallbacks[selectionKind].forEach(cb=>cb(indices));}}
+getSelectedIndices(){return this.dataSelectionManager?this.dataSelectionManager.getSelectedIndices():new Set();}
+searchText(searchTerm){if(!this.dataSelectionManager)return;const term=searchTerm.toLowerCase();const indices=this.searchArray.reduce((acc,d,i)=>{if(d.indexOf(term)>=0)acc.push(i);return acc;},[]);if(searchTerm===""){this.dataSelectionManager.removeSelectedIndicesOfItem(this.searchItemId);}else{this.dataSelectionManager.addOrUpdateSelectedIndicesOfItem(indices,this.searchItemId);}
+this._triggerCallbacks(this.searchItemId);this.highlightPoints(this.searchItemId);}
+recolorPoints(colorData,fieldName){if(!this[`${fieldName}Colors`]){const numPoints=colorData[`${fieldName}_r`].length;const colors=new Uint8Array(numPoints*4);for(let i=0;i<numPoints;i++){colors[i*4]=colorData[`${fieldName}_r`][i];colors[i*4+1]=colorData[`${fieldName}_g`][i];colors[i*4+2]=colorData[`${fieldName}_b`][i];colors[i*4+3]=colorData[`${fieldName}_a`][i];}
+this[`${fieldName}Colors`]=colors;}
+this.pointAttributes.getFillColor={value:this[`${fieldName}Colors`],size:4};this.updateTriggerCounter++;const updatedLayer=LayerFactory.createPoints('dataPointLayer',this.pointAttributes,this.pointConfig,{numPoints:this.selected.length,updateTriggerCounter:this.updateTriggerCounter});this._addOrReplaceLayer(updatedLayer);}
+resetPointColors(){this.pointAttributes.getFillColor={value:this.originalColors,size:4};this.updateTriggerCounter++;const updatedLayer=LayerFactory.createPoints('dataPointLayer',this.pointAttributes,this.pointConfig,{numPoints:this.selected.length,updateTriggerCounter:this.updateTriggerCounter});this._addOrReplaceLayer(updatedLayer);}}
+  </script>
+  <script>
+    class DataSelectionManager{constructor(specialItem){this.excludeItem=specialItem;this.selectedIndicesByItem={};this.selectedIndicesCommon=new Set();this.selectedIndicesBasicCommon=new Set();}
+_intersect(setA,setB){if(typeof setA.intersection==='function'){return setA.intersection(setB);}
+const _intersection=new Set();const[smaller,larger]=setA.size<=setB.size?[setA,setB]:[setB,setA];for(const elem of smaller){if(larger.has(elem)){_intersection.add(elem);}}
+return _intersection;}
+_intersectAll(sets){if(sets.length===0)return new Set();if(sets.length===1)return sets[0];sets.sort((a,b)=>a.size-b.size);let result=sets[0];for(let i=1;i<sets.length;i++){result=this._intersect(result,sets[i]);if(result.size===0)return result;}
+return result;}
+addOrUpdateSelectedIndicesOfItem(indices,itemId){this.selectedIndicesByItem[itemId]=new Set(indices);this.#recalculate();}
+removeSelectedIndicesOfItem(itemId){if(Object.prototype.hasOwnProperty.call(this.selectedIndicesByItem,itemId)){delete this.selectedIndicesByItem[itemId];this.#recalculate();}}
+getSelectedIndices(){return this.selectedIndicesCommon;}
+getBasicSelectedIndices(){return this.selectedIndicesBasicCommon;}
+hasSpecialSelection(){return Object.prototype.hasOwnProperty.call(this.selectedIndicesByItem,this.excludeItem);}#recalculate(){const allKeys=Object.keys(this.selectedIndicesByItem);const allSets=Object.values(this.selectedIndicesByItem);this.selectedIndicesCommon=this._intersectAll(allSets);const basicSets=[];for(const key of allKeys){if(key!==this.excludeItem){basicSets.push(this.selectedIndicesByItem[key]);}}
+this.selectedIndicesBasicCommon=this._intersectAll(basicSets);}}
+  </script>
+  <script>
+    const D3Histogram=(()=>{const isTypedArray=arr=>{return arr instanceof Float32Array||arr instanceof Float64Array||arr instanceof Int8Array||arr instanceof Uint8Array||arr instanceof Uint8ClampedArray||arr instanceof Int16Array||arr instanceof Uint16Array||arr instanceof Int32Array||arr instanceof Uint32Array;}
+const isValidDateStr=dateStr=>!isNaN((new Date(dateStr)).getTime());class D3Histogram{static DATA_TYPE_E=Object.freeze({NUMERICAL:'number',CATEGORICAL:'string',TEMPORAL:'date'});static CLIP_BOUNDS_ID="d3histogram-clipBounds";static BIN_RECT_CLASS_ID="d3histogram-bin";static BIN_FOCUS_GROUP_ID="d3histogram-focuscontainer";static BIN_FOCUS_RECT_CLASS_ID="d3histogram-binFocus";static BIN_MIN_WIDTH=10;static BIN_MAX_WIDTH=30;static AXIS_CLASS_ID='d3histogram-axis';static XAXIS_GROUP_ID='d3histogram-xaxis';static YAXIS_GROUP_ID='d3histogram-yaxis';static XAXIS_TICKS_NB=4;static YAXIS_TICKS_NB=2;static INTERACTION_CONTAINER_ID="d3histogram-interactioncontainer";static create({data,chartContainerId,chartWidth=300,chartHeight=70,title='',binCount=-1,binDefaultFillColor="#6290C3",binSelectedFillColor="#2EBFA5",binUnselectedFillColor="#9E9E9E",binContextFillColor="#E6E6E6",logScale=false,enableClickPersistence=false,chartSelectionCallback=()=>{}}){if(!chartContainerId){console.error("D3Histogram Error: chart container ID was not provided.");return null;}
+if(!data||!data.rawBinData||!Array.isArray(data.rawBinData)||data.rawBinData.length===0){console.error('D3Histogram Error: data must be a valid object containing rawBinData array.');return null;}
+try{return new D3Histogram({data,chartContainerId,chartDimensions:{width:chartWidth,height:chartHeight,margin:{top:20,right:5,bottom:20,left:20}},title,binCount,binDefaultFillColor,binSelectedFillColor,binUnselectedFillColor,binContextFillColor,logScale,enableClickPersistence,chartSelectionCallback});}catch(error){console.error("Error creating D3Histogram:",error);return null;}}
+constructor({data,chartContainerId,chartDimensions,title,binCount,binDefaultFillColor,binSelectedFillColor,binUnselectedFillColor,binContextFillColor,logScale,enableClickPersistence,chartSelectionCallback}){const{width,height,margin:{top,right,bottom,left}}=chartDimensions;const boundedWidth=width-left-right;const boundedHeight=height-top-bottom;this.state={data:{dataType:null,rawData:data,binsData:new Map(),indicesData:new Int16Array(),rawFocusData:null,binsFocusData:null,binCount:binCount!=-1?binCount:null,overallBinMin:null,overallBinMax:null,},chart:{chartContainerId:chartContainerId,dimensions:{...chartDimensions,boundedHeight,boundedWidth},wrapper:null,bounds:null,binDefaultFillColor,binSelectedFillColor,binUnselectedFillColor,binContextFillColor,logScale,binFocusDefaultFillColor:binDefaultFillColor,binFocusSelectedFillColor:binSelectedFillColor,binFocusUnselectedFillColor:binUnselectedFillColor,chartSelectionCallback},peripherals:{header:{title:title.length!==0?title:"",subtitle:null,titleDiv:null,subtitleDiv:null,},axes:{xAccessor:()=>{},yAccessor:()=>{},xScale:()=>{},yScale:()=>{},xAxis:()=>{},yAxis:()=>{},originalXScaleRange:null,}},interactions:{isBrushingActive:false,brush:null,prevBrushedDomain:null,isPanningActive:false,prevPanX:0,prevHoveredBinId:-1,prevZoomK:1,isClickPersistenceEnabled:enableClickPersistence,clickedBinId:-1,isClickActive:false,clickJustDeactivated:false}};this.#parseData();this.#drawCanvas();this.#drawChart();this.#initInteractions();}
+drawChartWithSelection(selectedIndices){this.#parseFocusData(selectedIndices);this.#drawFocusChart();this.#reset();}
+removeChartWithSelection(){const{BIN_FOCUS_GROUP_ID:binsFocusGroupId}=D3Histogram;const{bounds}=this.state.chart;this.#clearFocusData();bounds.select(`#${binsFocusGroupId}`).remove();this.#reset();}
+destroy(){const{chartContainerId}=this.state.chart;d3.select(`#${chartContainerId} svg`).remove();d3.select(`#${chartContainerId} #d3histogram-title`).remove();d3.select(`#${chartContainerId} #d3histogram-subtitle`).remove();this.state=null;}#parseData(){const{DATA_TYPE_E}=D3Histogram;let{dataType,binsData,indicesData}=this.state.data;const{rawData}=this.state.data;const{rawBinData,rawIndexData}=rawData;const value=rawBinData[0].mean_value;if(typeof value==='number'){dataType=DATA_TYPE_E.NUMERICAL;}else if(isValidDateStr(value)){dataType=DATA_TYPE_E.TEMPORAL;}else{dataType=DATA_TYPE_E.CATEGORICAL;}
+rawBinData.forEach(bin=>{const parsedBin={id:bin.id,min:dataType===DATA_TYPE_E.TEMPORAL?new Date(bin.min_value):bin.min_value,max:dataType===DATA_TYPE_E.TEMPORAL?new Date(bin.max_value):bin.max_value,mean:dataType===DATA_TYPE_E.CATEGORICAL?bin.id:bin.mean_value,label:bin.mean_value,indices:new Set(bin.indices)};binsData.set(bin.id,parsedBin);});indicesData=new Int16Array(rawIndexData["bin_id"]);this.state.data.dataType=dataType;this.state.data.binsData=binsData;this.state.data.indicesData=indicesData;this.state.data.binCount=binsData.size;}#parseFocusData(selectedIndices){const{binsData,indicesData}=this.state.data;const rawFocusData=new Map();binsData.forEach(bin=>{rawFocusData.set(bin.id,{indices:new Set(),binId:bin.id,min:bin.min,max:bin.max,mean:bin.mean,label:bin.label});});const selectedSet=new Set(selectedIndices);indicesData.forEach((binId,index)=>{if(selectedSet.has(index)){rawFocusData.get(binId).indices.add(index);}});this.state.data.rawFocusData=rawFocusData;this.state.data.binsFocusData=rawFocusData;}#clearFocusData(){this.state.data.rawFocusData=null;this.state.data.binsFocusData=null;}#drawCanvas(){const{chartContainerId,dimensions}=this.state.chart;const wrapper=d3.select(`#${chartContainerId}`).append("svg").attr("width",dimensions.width).attr("height",dimensions.height);const bounds=wrapper.append("g").style("transform",`translate(${dimensions.margin.left}px, ${dimensions.margin.top}px)`);this.state.chart.wrapper=wrapper;this.state.chart.bounds=bounds;}#drawChart(){const{CLIP_BOUNDS_ID,BIN_RECT_CLASS_ID,AXIS_CLASS_ID,XAXIS_GROUP_ID,YAXIS_GROUP_ID,XAXIS_TICKS_NB,YAXIS_TICKS_NB}=D3Histogram;const{dimensions,chartContainerId,bounds,binDefaultFillColor,logScale}=this.state.chart;const{title}=this.state.peripherals.header;const binsData=Array.from(this.state.data.binsData.values());let{overallBinMin,overallBinMax}=this.state.data;const xAccessor=d=>d.mean;const yAccessor=d=>d.indices.size;const xScale=d3.scaleBand().domain(binsData.map(d=>xAccessor(d))).range([0,dimensions.boundedWidth]).padding(0.1);let yScale;if(logScale){yScale=d3.scaleSymlog().domain([0,d3.max(binsData,yAccessor)]).range([dimensions.boundedHeight,0]);}else{yScale=d3.scaleLinear().domain([0,d3.max(binsData,yAccessor)]).range([dimensions.boundedHeight,0]);}
+this.state.peripherals.axes.originalXScaleRange=xScale.range();this.state.peripherals.axes.xAccessor=xAccessor;this.state.peripherals.axes.yAccessor=yAccessor;this.state.peripherals.axes.xScale=xScale;this.state.peripherals.axes.yScale=yScale;bounds.append("defs").append("clipPath").attr("id",CLIP_BOUNDS_ID).append("rect").attr("width",dimensions.boundedWidth).attr("height",dimensions.boundedHeight);const binsGroup=bounds.append("g");binsGroup.selectAll("g").data(binsData).join("g").append("rect").attr("id",(_,i)=>`${BIN_RECT_CLASS_ID}${i}`).attr("class",BIN_RECT_CLASS_ID).attr("x",d=>xScale(xAccessor(d))).attr("y",d=>yScale(yAccessor(d))).attr("width",xScale.bandwidth()).attr("height",d=>dimensions.boundedHeight-yScale(yAccessor(d))).attr("fill",binDefaultFillColor).attr("clip-path",`url(#${CLIP_BOUNDS_ID})`);const yAxisTickFormat=d3.format(".1s");const yAxis=d3.axisRight(yScale).ticks(logScale?2*YAXIS_TICKS_NB:YAXIS_TICKS_NB).tickFormat(d=>d===yScale.domain()[0]?'':yAxisTickFormat(d));bounds.append("g").attr("id",YAXIS_GROUP_ID).attr("class",AXIS_CLASS_ID).style("transform",`translate(-${dimensions.margin.left * .5}px, 0px)`).call(yAxis);const xAxis=d3.axisBottom(xScale).tickValues(this.#getAxisTickValues(xScale,XAXIS_TICKS_NB)).tickFormat(d=>this.#getFormattedAxisTickValue(d));bounds.append("g").attr("id",XAXIS_GROUP_ID).attr("class",AXIS_CLASS_ID).attr("transform",`translate(0,${dimensions.boundedHeight})`).call(xAxis);const chartDiv=document.getElementById(chartContainerId);let titleDiv=chartDiv.querySelector("#d3histogram-title");if(!titleDiv){titleDiv=document.createElement('div');titleDiv.id="d3histogram-title";chartDiv.appendChild(titleDiv);}
+d3.select(titleDiv).html(`<b>${title}</b>`);let subtitleDiv=chartDiv.querySelector("#d3histogram-subtitle");if(!subtitleDiv){subtitleDiv=document.createElement('div');subtitleDiv.id="d3histogram-subtitle";chartDiv.appendChild(subtitleDiv);}
+overallBinMin=Infinity;overallBinMax=-Infinity;binsData.forEach((binInfo)=>{overallBinMin=Math.min(overallBinMin,binInfo.min);overallBinMax=Math.max(overallBinMax,binInfo.max);});const subtitle=this.#getSubtitle([overallBinMin,overallBinMax]);d3.select(subtitleDiv).html(subtitle);this.state.data.overallBinMin=overallBinMin;this.state.data.overallBinMax=overallBinMax;this.state.peripherals.axes.xAxis=xAxis;this.state.peripherals.axes.yAxis=yAxis;this.state.peripherals.header.title=title;this.state.peripherals.header.subtitle=subtitle;this.state.peripherals.header.titleDiv=titleDiv;this.state.peripherals.header.subtitleDiv=subtitleDiv;}#drawFocusChart(){const{CLIP_BOUNDS_ID,BIN_FOCUS_GROUP_ID,BIN_FOCUS_RECT_CLASS_ID}=D3Histogram;const{xAccessor,yAccessor,xScale,yScale}=this.state.peripherals.axes;const{binFocusDefaultFillColor,dimensions,bounds}=this.state.chart;let binsFocusData=Array.from(this.state.data.binsFocusData.values());bounds.select(`#${BIN_FOCUS_GROUP_ID}`).remove();const binsFocusGroup=bounds.append("g").attr("id",BIN_FOCUS_GROUP_ID);binsFocusGroup.selectAll("g").data(binsFocusData).join("g").append("rect").attr("id",(_,i)=>`${BIN_FOCUS_RECT_CLASS_ID}${i}`).attr("class",BIN_FOCUS_RECT_CLASS_ID).attr("x",d=>xScale(xAccessor(d))).attr("y",d=>yScale(yAccessor(d))).attr("width",xScale.bandwidth()).attr("height",d=>dimensions.boundedHeight-yScale(yAccessor(d))).attr("fill",binFocusDefaultFillColor).attr("clip-path",`url(#${CLIP_BOUNDS_ID})`);}#hasFocusChart=_=>this.state.data.rawFocusData!==null;#reset(preserveClick=false){const{BIN_RECT_CLASS_ID,BIN_FOCUS_RECT_CLASS_ID,YAXIS_GROUP_ID,INTERACTION_CONTAINER_ID}=D3Histogram;const{overallBinMin,overallBinMax}=this.state.data;const{subtitleDiv}=this.state.peripherals.header;const{brush}=this.state.interactions;const{binDefaultFillColor,binContextFillColor,binFocusDefaultFillColor,chartSelectionCallback}=this.state.chart;let{isClickActive}=this.state.interactions;if(preserveClick&&isClickActive){d3.select(`#${INTERACTION_CONTAINER_ID}`).call(brush.clear);this.state.interactions.prevBrushedDomain=null;this.state.interactions.isBrushingActive=false;this.state.interactions.isPanningActive=false;this.state.interactions.prevHoveredBinId=-1;this.state.interactions.prevPanX=0;d3.select(`#${YAXIS_GROUP_ID}`).raise();d3.select(`#${INTERACTION_CONTAINER_ID}`).raise();return;}
+d3.selectAll(`.${BIN_RECT_CLASS_ID}`).style("fill",this.#hasFocusChart()?binContextFillColor:binDefaultFillColor);d3.selectAll(`.${BIN_FOCUS_RECT_CLASS_ID}`).style("fill",binFocusDefaultFillColor);chartSelectionCallback(null);const subtitle=this.#getSubtitle([overallBinMin,overallBinMax]);d3.select(subtitleDiv).html(subtitle);d3.select(`#${INTERACTION_CONTAINER_ID}`).call(brush.clear);const inter=this.state.interactions;inter.prevBrushedDomain=null;inter.isBrushingActive=false;inter.isPanningActive=false;inter.prevHoveredBinId=-1;inter.prevPanX=0;inter.isClickActive=false;inter.clickedBinId=-1;d3.select(`#${YAXIS_GROUP_ID}`).raise();d3.select(`#${INTERACTION_CONTAINER_ID}`).raise();}#invertBandScale(scale,xPixel){const domain=scale.domain();const range=scale.range();const paddingOuter=scale.paddingOuter();const step=scale.step();if(xPixel<range[0])return domain[0];if(xPixel>range[1])return domain[domain.length-1];const index=Math.floor((xPixel-range[0]-paddingOuter*step)/step);return domain[Math.max(0,Math.min(index,domain.length-1))];}#getBinIdFromPixel(xPixel){const{xScale,xAccessor}=this.state.peripherals.axes;const{binsData,binsFocusData}=this.state.data;const data=this.#hasFocusChart()?binsFocusData:binsData;const meanValue=this.#invertBandScale(xScale,xPixel);const dataArr=Array.from(data.values());return dataArr.findIndex(d=>xAccessor(d)===meanValue);}#initInteractions(){const{INTERACTION_CONTAINER_ID,BIN_MAX_WIDTH}=D3Histogram;const{dimensions,bounds}=this.state.chart;const{binCount}=this.state.data;const brush=d3.brushX().extent([[0,0],[dimensions.boundedWidth,dimensions.boundedHeight]]).filter(event=>event.shiftKey||(event.type==='mousedown'&&event.detail>1)).on("brush",e=>this.#handleBrush(e)).on("end",e=>this.#handleBrushEnd(e));bounds.append("g").attr("id",INTERACTION_CONTAINER_ID).call(brush);d3.select(`#${INTERACTION_CONTAINER_ID}`).on('mousedown',e=>this.#handleMouseDown(e)).on('mouseup',e=>this.#handleMouseUp(e)).on('mousemove',e=>this.#handleMouseMove(e)).on('mouseleave',e=>this.#handleMouseLeave(e)).on('click',e=>this.#handleClick(e));const maxK=(binCount*BIN_MAX_WIDTH)/dimensions.boundedWidth;const zoom=d3.zoom().scaleExtent([1,maxK]).translateExtent([[0,0],[dimensions.boundedWidth,dimensions.boundedHeight]]).extent([[0,0],[dimensions.boundedWidth,dimensions.boundedHeight]]).filter(event=>event.type==='wheel').on("zoom",e=>this.#handleZoom(e));d3.select(`#${INTERACTION_CONTAINER_ID}`).call(zoom);this.state.interactions.brush=brush;}#handleBrush(e){const{DATA_TYPE_E,BIN_RECT_CLASS_ID,BIN_FOCUS_RECT_CLASS_ID}=D3Histogram;const{binSelectedFillColor,binUnselectedFillColor,binContextFillColor,binFocusSelectedFillColor,binFocusUnselectedFillColor,chartSelectionCallback}=this.state.chart;const{xAccessor,xScale}=this.state.peripherals.axes;const{subtitleDiv}=this.state.peripherals.header;const{dataType,binsData,binsFocusData}=this.state.data;let{prevBrushedDomain}=this.state.interactions;if(dataType===DATA_TYPE_E.CATEGORICAL){this.#removeBrush();return;}
+if(!e.sourceEvent||!e.selection)return;this.state.interactions.isBrushingActive=true;const x0=this.#invertBandScale(xScale,e.selection[0]);const x1=this.#invertBandScale(xScale,e.selection[1]);const data=this.#hasFocusChart()?binsFocusData:binsData;const brushedBinIds=[];const brushedDomainBinned=[Infinity,-Infinity];const brushedBins=[];data.forEach((d,i)=>{const val=xAccessor(d);if(val>=x0&&val<=x1){brushedBinIds.push(i);brushedBins.push(d);brushedDomainBinned[0]=Math.min(brushedDomainBinned[0],d.min);brushedDomainBinned[1]=Math.max(brushedDomainBinned[1],d.max);}});if(prevBrushedDomain!=null&&prevBrushedDomain[0]===brushedDomainBinned[0]&&prevBrushedDomain[1]===brushedDomainBinned[1])return;this.state.interactions.prevBrushedDomain=brushedDomainBinned;d3.selectAll(`.${BIN_RECT_CLASS_ID}`).style("fill",this.#hasFocusChart()?binContextFillColor:(_,i)=>brushedBinIds.includes(i)?binSelectedFillColor:binUnselectedFillColor);d3.selectAll(`.${BIN_FOCUS_RECT_CLASS_ID}`).style("fill",(_,i)=>brushedBinIds.includes(i)?binFocusSelectedFillColor:binFocusUnselectedFillColor);const subtitle=this.#getSubtitle(brushedDomainBinned);d3.select(subtitleDiv).html(subtitle);let brushedIndices=new Set();brushedBins.forEach(b=>{brushedIndices=brushedIndices.union(b.indices);});chartSelectionCallback(brushedIndices);}#handleBrushEnd(e){const{DATA_TYPE_E}=D3Histogram;if(this.state.data.dataType!==DATA_TYPE_E.CATEGORICAL&&e.sourceEvent&&!e.selection){this.#reset();}}#removeBrush(){const{INTERACTION_CONTAINER_ID}=D3Histogram;d3.select(`#${INTERACTION_CONTAINER_ID}`).selectAll(".handle, .selection").style("display","none");}#handleMouseDown(e){if(this.state.interactions.isBrushingActive||e.button!=1)return;this.state.interactions.isPanningActive=true;this.state.interactions.prevPanX=e.clientX;}#handleMouseUp(e){if(this.state.interactions.isBrushingActive||e.button!=1)return;this.state.interactions.isPanningActive=false;}#handleMouseMove(e){const{isBrushingActive,isPanningActive}=this.state.interactions;if(isBrushingActive)return;if(isPanningActive)this.#handlePan(e);else this.#handleHover(e);}#handleMouseLeave(_){const{isBrushingActive,isClickActive}=this.state.interactions;if(!isBrushingActive&&!isClickActive)this.#reset();}#handleHover(e){const{BIN_RECT_CLASS_ID,BIN_FOCUS_RECT_CLASS_ID}=D3Histogram;const{binSelectedFillColor,binUnselectedFillColor,binContextFillColor,binFocusSelectedFillColor,binFocusUnselectedFillColor,chartSelectionCallback}=this.state.chart;const{subtitleDiv}=this.state.peripherals.header;if(this.state.interactions.isClickActive||this.state.interactions.clickJustDeactivated)return;const xCoord=d3.pointer(e)[0];const hoveredBinId=this.#getBinIdFromPixel(xCoord);if(hoveredBinId===-1||hoveredBinId===this.state.interactions.prevHoveredBinId)return;this.state.interactions.prevHoveredBinId=hoveredBinId;const binClassId=this.#hasFocusChart()?BIN_FOCUS_RECT_CLASS_ID:BIN_RECT_CLASS_ID;const selection=d3.select(`#${binClassId}${hoveredBinId}`);if(selection.empty())return;const hoveredBin=selection.data()[0];const subtitle=this.#getSubtitle([hoveredBin.min,hoveredBin.max]);d3.select(subtitleDiv).html(subtitle);d3.selectAll(`.${BIN_RECT_CLASS_ID}`).style("fill",(_,i)=>this.#hasFocusChart()?binContextFillColor:i==hoveredBinId?binSelectedFillColor:binUnselectedFillColor);d3.selectAll(`.${BIN_FOCUS_RECT_CLASS_ID}`).style("fill",(_,i)=>i==hoveredBinId?binFocusSelectedFillColor:binFocusUnselectedFillColor);chartSelectionCallback(hoveredBin.indices);}#handlePan(e){const{XAXIS_GROUP_ID,YAXIS_GROUP_ID,BIN_RECT_CLASS_ID,BIN_FOCUS_RECT_CLASS_ID}=D3Histogram;const{originalXScaleRange,xAccessor,yAccessor,xAxis,yAxis}=this.state.peripherals.axes;const{dimensions,wrapper}=this.state.chart;const{binsData}=this.state.data;let{xScale,yScale}=this.state.peripherals.axes;let{prevPanX}=this.state.interactions;const dX=e.clientX-prevPanX;this.state.interactions.prevPanX=e.clientX;let pannedRange=xScale.range().map(d=>d+dX);if(pannedRange[1]<originalXScaleRange[1]){pannedRange=[pannedRange[0]+originalXScaleRange[1]-pannedRange[1],originalXScaleRange[1]];}else if(pannedRange[0]>originalXScaleRange[0]){pannedRange=[originalXScaleRange[0],pannedRange[1]-pannedRange[0]-originalXScaleRange[0]];}
+xScale.range(pannedRange);wrapper.select(`#${XAXIS_GROUP_ID}`).call(xAxis);const pannedDomain=originalXScaleRange.map(val=>this.#invertBandScale(xScale,val));const pannedBinsData=Array.from(binsData.values()).filter(d=>xAccessor(d)>=pannedDomain[0]&&xAccessor(d)<=pannedDomain[1]);yScale.domain([0,d3.max(pannedBinsData,yAccessor)||1]);wrapper.select(`#${YAXIS_GROUP_ID}`).transition().call(yAxis);wrapper.selectAll(`.${BIN_RECT_CLASS_ID}, .${BIN_FOCUS_RECT_CLASS_ID}`).attr("x",d=>xScale(xAccessor(d))).transition().attr("y",d=>yScale(yAccessor(d))).attr("height",d=>dimensions.boundedHeight-yScale(yAccessor(d)));}#handleZoom(e){const{isBrushingActive}=this.state.interactions;const{dimensions,wrapper}=this.state.chart;const{binsData}=this.state.data;const{XAXIS_GROUP_ID,YAXIS_GROUP_ID,XAXIS_TICKS_NB,BIN_RECT_CLASS_ID,BIN_FOCUS_RECT_CLASS_ID}=D3Histogram;const{originalXScaleRange,xAccessor,yAccessor,xScale,yScale,xAxis,yAxis}=this.state.peripherals.axes;if(isBrushingActive||e.sourceEvent.type!=="wheel"||this.state.interactions.prevZoomK==e.transform.k)return;this.state.interactions.prevZoomK=e.transform.k;xScale.range([0,dimensions.boundedWidth].map(d=>e.transform.applyX(d)));xAxis.tickValues(this.#getAxisTickValues(xScale,XAXIS_TICKS_NB*e.transform.k));wrapper.select(`#${XAXIS_GROUP_ID}`).transition().call(xAxis);const zoomedDomain=originalXScaleRange.map(val=>this.#invertBandScale(xScale,val));const zoomedData=Array.from(binsData.values()).filter(d=>xAccessor(d)>=zoomedDomain[0]&&xAccessor(d)<=zoomedDomain[1]);yScale.domain([0,d3.max(zoomedData,yAccessor)||1]);wrapper.select(`#${YAXIS_GROUP_ID}`).transition().call(yAxis);wrapper.selectAll(`.${BIN_RECT_CLASS_ID}, .${BIN_FOCUS_RECT_CLASS_ID}`).transition().attr("x",d=>xScale(xAccessor(d))).attr("y",d=>yScale(yAccessor(d))).attr("width",xScale.bandwidth()).attr("height",d=>dimensions.boundedHeight-yScale(yAccessor(d)));}#handleClick(e){const{isClickPersistenceEnabled}=this.state.interactions;if(!isClickPersistenceEnabled)return;const{BIN_RECT_CLASS_ID,BIN_FOCUS_RECT_CLASS_ID}=D3Histogram;const{chartSelectionCallback}=this.state.chart;const{subtitleDiv}=this.state.peripherals.header;let{clickedBinId,isClickActive}=this.state.interactions;const xCoord=d3.pointer(e)[0];const newClickedBinId=this.#getBinIdFromPixel(xCoord);if(newClickedBinId===-1)return;if(clickedBinId===newClickedBinId&&isClickActive){this.state.interactions.isClickActive=false;this.state.interactions.clickedBinId=-1;this.state.interactions.clickJustDeactivated=true;chartSelectionCallback(null);this.#reset();setTimeout(()=>{this.state.interactions.clickJustDeactivated=false;},100);}else{this.state.interactions.isClickActive=true;this.state.interactions.clickedBinId=newClickedBinId;const binClassId=this.#hasFocusChart()?BIN_FOCUS_RECT_CLASS_ID:BIN_RECT_CLASS_ID;const selection=d3.select(`#${binClassId}${newClickedBinId}`);if(selection.empty())return;const clickedBin=selection.data()[0];chartSelectionCallback(clickedBin.indices);this.#updateBinColors(newClickedBinId);const subtitle=this.#getSubtitle([clickedBin.min,clickedBin.max]);d3.select(subtitleDiv).html(subtitle);}}#updateBinColors(selectedBinId){const{BIN_RECT_CLASS_ID,BIN_FOCUS_RECT_CLASS_ID}=D3Histogram;const{binSelectedFillColor,binUnselectedFillColor,binContextFillColor,binFocusSelectedFillColor,binFocusUnselectedFillColor}=this.state.chart;d3.selectAll(`.${BIN_RECT_CLASS_ID}`).style("fill",(_,i)=>this.#hasFocusChart()?binContextFillColor:i==selectedBinId?binSelectedFillColor:binUnselectedFillColor);d3.selectAll(`.${BIN_FOCUS_RECT_CLASS_ID}`).style("fill",(_,i)=>i==selectedBinId?binFocusSelectedFillColor:binFocusUnselectedFillColor);}#getAxisTickValues=(scale,numTicks)=>{const domain=scale.domain();const ticksInterval=Math.max(1,Math.floor(domain.length/numTicks));let tickValues;if(domain.length<=numTicks){tickValues=domain;}else{tickValues=domain.filter((_,i)=>i%ticksInterval===0);while(tickValues.length<numTicks)tickValues.push(domain[domain.length-1]);}
+return tickValues;};#getFormattedAxisTickValue(value){const{DATA_TYPE_E}=D3Histogram;const{dataType}=this.state.data;if(dataType===DATA_TYPE_E.NUMERICAL)return this.#formatNumericalValue(value);if(dataType===DATA_TYPE_E.CATEGORICAL)return this.#formatCategoricalValue(value);if(dataType===DATA_TYPE_E.TEMPORAL)return this.#formatTemporalValue(value);return value;}#getSubtitle(range){const{DATA_TYPE_E}=D3Histogram;const{dataType,binsData}=this.state.data;if(dataType===DATA_TYPE_E.CATEGORICAL){const bin=binsData.get(range[0]);return(range[0]===range[1]&&bin)?`<b>${bin.label}</b>`:'';}
+let formattedRange;if(dataType===DATA_TYPE_E.NUMERICAL)formattedRange=range.map(d=>this.#formatNumericalValue(d));else formattedRange=range.map(d=>this.#formatTemporalValue(d));return`<b>${formattedRange[0]} — ${formattedRange[1]}</b>`;}#formatCategoricalValue(value){const{xAccessor}=this.state.peripherals.axes;const{binsData}=this.state.data;const tickBin=Array.from(binsData.values()).find(b=>xAccessor(b)===value);if(!tickBin)return value;const idx=tickBin.label.indexOf(' ');return idx!==-1?tickBin.label.slice(0,idx):tickBin.label;}#formatNumericalValue(value){const formatWithSI=d3.format(".4s");return formatWithSI(value).replace('µ','u').replace(/(\.[0-9]*[1-9])0+|\.0*([a-zA-Z]*)$/,'$1$2');}#formatTemporalValue(value){const formatTime=d3.utcFormat("%m/%Y");return formatTime(new Date(value));}}
+return D3Histogram;})();
+  </script>
+  <script>
+    class Colorbar{constructor(container,options={}){this.container=container;this.options={width:options.width||300,height:options.height||20,min:options.min||0,max:options.max||100,numTicks:options.numTicks||5,colormap:options.colormap||['blue','red'],label:options.label||'',dateFormat:options.dateFormat||'short'};this.isDateScale=this.options.min instanceof Date||(typeof this.options.min==='string'&&!isNaN(Date.parse(this.options.min)));if(this.isDateScale){this.options.min=this.ensureDate(this.options.min);this.options.max=this.ensureDate(this.options.max);this.analyzeDateTimeRange();}else{this.analyzeNumericRange();}
+this.render();}
+analyzeDateTimeRange(){const{min,max}=this.options;const rangeMs=max.getTime()-min.getTime();const rangeHours=rangeMs/(1000*60*60);const rangeDays=rangeHours/24;const rangeMonths=rangeDays/30.44;const rangeYears=rangeMonths/12;if(rangeYears>=2)this.dateTimeFormat={year:'numeric',month:'short'};else if(rangeMonths>=2)this.dateTimeFormat={month:'short',day:'numeric'};else if(rangeDays>=2)this.dateTimeFormat={month:'short',day:'numeric',hour:'2-digit'};else if(rangeHours>=2)this.dateTimeFormat={hour:'2-digit',minute:'2-digit'};else this.dateTimeFormat={hour:'2-digit',minute:'2-digit',second:'2-digit'};}
+analyzeNumericRange(){const{min,max}=this.options;this.isIntegerData=Number.isInteger(min)&&Number.isInteger(max);const maxAbs=Math.max(Math.abs(min),Math.abs(max));const minAbs=Math.min(Math.abs(min),Math.abs(max));this.useScientific=maxAbs>=1e5||(minAbs>0&&minAbs<=1e-4);if(!this.isIntegerData&&!this.useScientific){const range=max-min;if(range<1)this.decimals=3;else if(range<10)this.decimals=2;else this.decimals=1;}}
+ensureDate(value){return value instanceof Date?value:new Date(value);}
+formatNumber(value){if(this.isIntegerData)return Math.round(value).toString();if(this.useScientific)return value.toExponential(2);if(Number.isInteger(value))return value.toString();return value.toFixed(this.decimals);}
+formatValue(value){if(this.isDateScale){const date=value instanceof Date?value:new Date(value);return this.options.dateFormat?date.toLocaleDateString(undefined,this.options.dateFormat):date.toLocaleString(undefined,this.dateTimeFormat);}
+return this.formatNumber(value);}
+createColorScale(){const{colormap}=this.options;if(colormap.length===0)return'none';if(colormap.length===1)return colormap[0];return`linear-gradient(to right, ${colormap.join(', ')})`;}
+generateTicks(){const{min,max,numTicks}=this.options;const ticks=[];for(let i=0;i<numTicks;i++){let value;const percent=i/(numTicks-1);if(this.isDateScale){const minTime=min.getTime();const maxTime=max.getTime();value=new Date(minTime+percent*(maxTime-minTime));}else{value=min+percent*(max-min);}
+ticks.push({value:value,formattedValue:this.formatValue(value),position:percent*100});}
+return ticks;}
+render(){this.container.innerHTML='';const wrapper=document.createElement('div');wrapper.className='colorbar-container';if(this.options.label){const label=document.createElement('div');label.style.fontWeight='bold';label.style.marginBottom='5px';label.textContent=this.options.label;wrapper.appendChild(label);}
+const colorbar=document.createElement('div');colorbar.className='colorbar';colorbar.style.background=this.createColorScale();const tickContainer=document.createElement('div');tickContainer.className='colorbar-tick-container';this.generateTicks().forEach(tick=>{const tickElement=document.createElement('div');tickElement.className='colorbar-tick';tickElement.style.left=`${tick.position}%`;const tickLine=document.createElement('div');tickLine.className='colorbar-tick-line';const tickLabel=document.createElement('div');tickLabel.className='colorbar-tick-label';tickLabel.textContent=tick.formattedValue;tickElement.appendChild(tickLine);tickElement.appendChild(tickLabel);tickContainer.appendChild(tickElement);});wrapper.appendChild(colorbar);wrapper.appendChild(tickContainer);this.container.appendChild(wrapper);}}
+function convertRGBtoObj(colorString){const rgbKeys=['r','g','b','a'];let rgbObj={};let color=colorString.replace(/^rgba?\(|\s+|\)$/g,'').split(',');for(let i in rgbKeys)
+rgbObj[rgbKeys[i]]=parseInt(color[i])||1;return rgbObj;}
+class ColorLegend{constructor(container,datamap,colorData,colorField,options={}){this.container=container;this.options={width:options.width||400,colormap:options.colormap||{"High":"blue","Low":"red"},label:options.label||''};this.datamap=datamap;this.colorData=colorData;this.colorField=colorField;this.selectedItems=new Set();this.legendItems=[];this.render();}
+render(){this.container.innerHTML='';for(const[label,color]of Object.entries(this.options.colormap)){const legendItem=document.createElement('div');legendItem.className='legend-item';legendItem.style.cursor='pointer';const colorBox=document.createElement('div');colorBox.className='color-swatch-box';colorBox.style.borderRadius="2px";colorBox.style.backgroundColor=color;const labelElement=document.createElement('div');labelElement.className='legend-label';labelElement.textContent=label;legendItem.appendChild(colorBox);legendItem.appendChild(labelElement);this.container.appendChild(legendItem);this.legendItems.push(legendItem);}
+this.container.addEventListener('click',(event)=>{const item=event.target.closest('.legend-item');if(!item)return;const swatch=item.querySelector('.color-swatch-box');const color=window.getComputedStyle(swatch).backgroundColor;if(this.selectedItems.has(color)){this.selectedItems.delete(color);}else{this.selectedItems.add(color);}
+if(this.selectedItems.size>0){const selectedIndices=[];const targetColors=Array.from(this.selectedItems).map(c=>convertRGBtoObj(c));const rArr=this.colorData[`${this.colorField}_r`];const gArr=this.colorData[`${this.colorField}_g`];const bArr=this.colorData[`${this.colorField}_b`];const len=rArr.length;for(let i=0;i<len;i++){for(let j=0;j<targetColors.length;j++){const target=targetColors[j];if(Math.abs(rArr[i]-target.r)<=1&&Math.abs(gArr[i]-target.g)<=1&&Math.abs(bArr[i]-target.b)<=1){selectedIndices.push(i);break;}}}
+this.datamap.addSelection(selectedIndices,"legend");}else{this.datamap.removeSelection("legend");}
+this.legendItems.forEach((legendItem)=>{const itemSwatch=legendItem.querySelector('.color-swatch-box');const itemColor=window.getComputedStyle(itemSwatch).backgroundColor;if(this.selectedItems.size===0||this.selectedItems.has(itemColor)){legendItem.style.opacity=1;}else{legendItem.style.opacity=0.25;}});});}}
+class ColormapSelectorTool{constructor(colorMaps,colorMapContainer,colorData,legendContainer,datamap,nColors=5){this.colorMaps=colorMaps;this.colorMapContainer=colorMapContainer;this.colorData=colorData;this.datamap=datamap;this.nColors=nColors;this.legendContainer=legendContainer;this.legendContainer.style.display='none';for(const colorMap of this.colorMaps){if(Object.hasOwn(colorMap,"nColors")){this.nColors=Math.max(this.nColors,colorMap.nColors);}}
+this.selectedColorMap=colorMaps[0];this.measureDiv=document.createElement("div");this.measureDiv.style.cssText="position:absolute; visibility:hidden; white-space:nowrap;";document.body.appendChild(this.measureDiv);const maxWidth=this.calculateMaxWidth();this.buildDropdown(maxWidth);this.updateSelectedColorMap();this.populateColorMapOptions();this.populateLegends();this.setupDelegatedListeners();if(this.measureDiv.parentNode)document.body.removeChild(this.measureDiv);}
+calculateMaxWidth(){let maxWidth=0;this.measureDiv.className="color-map-option";for(const colorMap of this.colorMaps){this.measureDiv.innerHTML=`${this.createColorSwatch(colorMap.colors)} <span class="color-map-text">${colorMap.description}</span>`;maxWidth=Math.max(maxWidth,this.measureDiv.offsetWidth+40);}
+return maxWidth;}
+buildDropdown(maxWidth){this.colorMapDropdown=document.createElement("div");this.colorMapDropdown.className="color-map-dropdown";this.colorMapDropdown.style.width=`${maxWidth}px`;const colorMapSelected=document.createElement("div");colorMapSelected.className="color-map-selected";this.selectedColorSwatch=document.createElement("span");this.selectedColorSwatch.className="color-swatch";this.selectedColorSwatch.id="selectedColorSwatch";this.selectedColorMapText=document.createElement("span");this.selectedColorMapText.className="color-map-text";this.selectedColorMapText.id="selectedColorMapText";const downArrow=document.createElement("span");downArrow.className="dropdown-arrow";downArrow.innerHTML="▼";downArrow.style.cursor="pointer";colorMapSelected.append(this.selectedColorSwatch,this.selectedColorMapText,downArrow);this.colorMapDropdown.appendChild(colorMapSelected);this.colorMapOptions=document.createElement("div");this.colorMapOptions.className="color-map-options";this.colorMapOptions.id="colorMapOptions";this.colorMapOptions.style.display='none';this.colorMapOptions.style.width=`${maxWidth}px`;this.colorMapDropdown.appendChild(this.colorMapOptions);this.colorMapContainer.appendChild(this.colorMapDropdown);this.colorMapContainer.style.width=`${maxWidth + 20}px`;}
+setupDelegatedListeners(){document.addEventListener('click',(e)=>{if(e.target.classList.contains('dropdown-arrow')){e.stopPropagation();const wrapper=e.target.closest('.color-map-dropdown');if(wrapper){const options=wrapper.querySelector('.color-map-options');if(options){const isHidden=options.style.display==='none';options.style.display=isHidden?'block':'none';}}
+return;}
+const option=e.target.closest('.color-map-option');if(option){const index=option.dataset.index;if(index!==undefined){e.stopPropagation();const colorMap=this.colorMaps[parseInt(index)];if(colorMap){this.handleColorMapSelection(colorMap);}
+const wrapper=option.closest('.color-map-dropdown');if(wrapper){const options=wrapper.querySelector('.color-map-options');if(options)options.style.display='none';}}
+return;}
+if(!e.target.closest('.color-map-dropdown')){const allOptions=document.querySelectorAll('.color-map-options');allOptions.forEach(opt=>opt.style.display='none');}});}
+createColorSwatch(colors,categorical=false){const n=Math.min(this.nColors,colors.length);let result='<span class="color-swatch">';if(colors.length>16&&!categorical){const stepSize=(colors.length-1)/(n-1);for(let i=0;i<colors.length;i+=stepSize){result+=`<span class="color-swatch-box" style="background: ${colors[Math.round(i)]}"></span>`;}}else{for(let i=0;i<n;i++){result+=`<span class="color-swatch-box" style="background: ${colors[Math.round(i)]}"></span>`;}}
+result+='</span>';return result;}
+handleColorMapSelection(colorMap){this.selectedColorMap=colorMap;this.updateSelectedColorMap();if(colorMap.field==='none'){this.datamap.resetPointColors();this.legendContainer.style.display='none';}else{this.datamap.recolorPoints(this.colorData,colorMap.field);const showLegend=((colorMap.kind==="categorical")&&((colorMap.colors.length<=20)||colorMap.showLegend)&&Object.hasOwn(colorMap,"colorMapping"))||(colorMap.kind==="continuous")||(colorMap.kind==="datetime");if(showLegend){this.legendContainer.style.display='block';Object.values(this.legends).forEach(l=>l.style.display='none');if(this.legends[colorMap.field]){this.legends[colorMap.field].style.display='block';}}else{this.legendContainer.style.display='none';}}}
+updateSelectedColorMap(){const swatch=document.getElementById("selectedColorSwatch");const text=document.getElementById("selectedColorMapText");if(swatch&&text){swatch.innerHTML=this.createColorSwatch(this.selectedColorMap.colors,this.selectedColorMap.kind==="categorical");text.innerHTML=this.selectedColorMap.description;}}
+populateColorMapOptions(){this.colorMapOptions.innerHTML='';this.colorMaps.forEach((colorMap,index)=>{const option=document.createElement("div");option.className="color-map-option";option.dataset.index=index;option.innerHTML=`<span class="color-map-text">${colorMap.description}</span> ${this.createColorSwatch(colorMap.colors, colorMap.kind === "categorical")}`;this.colorMapOptions.appendChild(option);});}
+populateLegends(){this.legends={};this.legendContainer.innerHTML='';for(const colorMap of this.colorMaps){if(colorMap.field==='none')continue;const legendDiv=document.createElement("div");legendDiv.className="color-legend-container";legendDiv.style.display='none';this.legends[colorMap.field]=legendDiv;if(colorMap.kind==="categorical"&&((colorMap.colors.length<=20)||colorMap.showLegend)&&Object.hasOwn(colorMap,"colorMapping")){new ColorLegend(legendDiv,this.datamap,this.colorData,colorMap.field,{colormap:colorMap.colorMapping});}else if(colorMap.kind==="continuous"){new Colorbar(legendDiv,{colormap:colorMap.colors,label:colorMap.description,min:colorMap.valueRange[0],max:colorMap.valueRange[1]});}else if(colorMap.kind==="datetime"){new Colorbar(legendDiv,{colormap:colorMap.colors,label:colorMap.description,min:new Date(colorMap.valueRange[0]),max:new Date(colorMap.valueRange[1]),dateFormat:colorMap.dateFormat});}
+this.legendContainer.appendChild(legendDiv);}}}
+  </script>
+  <script>
+    var getNextSibling=function(elem,selector){var sibling=elem.nextElementSibling;if(!selector)return sibling;while(sibling){if(sibling.matches(selector))return sibling;sibling=sibling.nextElementSibling}};function formatTopicTreeButtonHtml(icon,labelId){return`<button class="topic-tree-btn" data-label-id="${labelId}">${icon}</button>`;}
+class TopicTree{constructor(topicTreeContainer,datamap,buttons,icon,options={title:"Topic Tree",maxWidth:"30vw",maxHeight:"42vh",fontSize:"12pt",colorBullets:false,}){this.container=topicTreeContainer;this.datamap=datamap;this.colorBullets=options.colorBullets;this.maxWidth=options.maxWidth;this.maxHeight=options.maxHeight;this.title=options.title;this.fontSize=options.fontSize;this.elements=datamap.labelData||[];this.savedScrollTop=0;this.isMobile=window.matchMedia("(max-width: 768px)").matches;const layers=this.elements.map(e=>e.layer_no);this.rootLayerNo=layers.length?Math.max(...layers):0;this.parentChildMap=this.buildParentChildMap();this.container.style.fontSize=this.fontSize;this.header=document.createElement('div');this.header.classList.add('topic-tree-header');this.heading=document.createElement('h3');this.heading.textContent=this.title;this.toolsDiv=document.createElement('div');this.toolsDiv.classList.add('topic-tree-tools');this.expandAllBtn=document.createElement('button');this.expandAllBtn.classList.add('expand-all-btn');this.expandAllBtn.dataset.expanded='false';this.expandAllBtn.textContent='Ava kõik';this.expandAllBtn.style.fontSize='0.8em';this.toggleBtn=document.createElement('button');this.toggleBtn.classList.add('topic-tree-toggle-btn');this.toggleBtn.innerHTML='&#9660;';this.toggleBtn.style.background='none';this.toggleBtn.style.border='none';this.toggleBtn.style.cursor='pointer';this.toolsDiv.appendChild(this.expandAllBtn);this.toolsDiv.appendChild(this.toggleBtn);this.header.appendChild(this.heading);this.header.appendChild(this.toolsDiv);this.topicTreeBody=document.createElement('div');this.topicTreeBody.classList.add('topic-tree-body');if(!this.isMobile){this.topicTreeBody.style.maxWidth=this.maxWidth;this.topicTreeBody.style.maxHeight=this.maxHeight;}
+this.topicTreeBody.innerHTML=this.buildTreeHtml(buttons,icon);this.container.appendChild(this.header);this.container.appendChild(this.topicTreeBody);this.spanCache=new Map();this.parentChainCache=new Map();this.setupCaretHandlers();this.setupLabelHandlers();this.setupExpandAllHandler();this.setupToggleHandler();this.initializeSpanCache();this.initializeParentChainCache();this.highlightElements(this.elements);}
+buildParentChildMap(){const parentChildMap=new Map();this.elements.forEach(element=>{const parentId=element.parent;if(!parentChildMap.has(parentId)){parentChildMap.set(parentId,[]);}
+parentChildMap.get(parentId).push(element);});return parentChildMap;}
+buildTreeHtml(buttons,icon,parentId='base'){const children=this.parentChildMap.get(parentId)||[];if(children.length===0)return'';return`
+            <ul class="nested">
+                ${children.map(label => `<li><span
+class="${label.lowest_layer ? 'bullet' : 'caret'} ${label.id.endsWith('-1') ? 'unlabeled' : ''}"
+data-element-id="${label.id}"
+${this.colorBullets?`style="color: rgb(${label.r}, ${label.g}, ${label.b});"`:''}></span>${buttons?formatTopicTreeButtonHtml(icon,label.id):''}<span class="topic-tree-label"data-bounds="${JSON.stringify(label.bounds)}"data-label-id="${label.id}">${label.label||label.id}</span>${this.buildTreeHtml(buttons,icon,label.id)}</li>`).join('')}
+            </ul>
+        `;}
+setupLabelHandlers(){this.container.querySelectorAll('.topic-tree-label').forEach(button=>{button.addEventListener('click',(e)=>{const bounds=JSON.parse(e.currentTarget.dataset.bounds);this.datamap.flyToBounds(bounds);if(window.matchMedia("(max-width: 768px)").matches){this.toggleTree(false);}});});}
+setupToggleHandler(){this.toggleBtn.addEventListener('click',(e)=>{e.stopPropagation();this.toggleTree();});this.header.addEventListener('click',()=>{this.toggleTree();});this.expandAllBtn.addEventListener('click',(e)=>{e.stopPropagation();});}
+toggleTree(forceState=null){const body=this.topicTreeBody;const isCollapsed=body.classList.contains('collapsed');const shouldShow=forceState!==null?forceState:isCollapsed;if(shouldShow){body.classList.remove('collapsed');this.toggleBtn.innerHTML='&#9660;';body.scrollTop=this.savedScrollTop;}else{this.savedScrollTop=body.scrollTop;body.classList.add('collapsed');this.toggleBtn.innerHTML='&#9664;';}}
+initializeSpanCache(){this.spanCache.clear();this.container.querySelectorAll('[data-element-id]').forEach(span=>{this.spanCache.set(span.dataset.elementId,span);});}
+initializeParentChainCache(){this.parentChainCache.clear();this.elements.forEach(element=>{const chain=[];let current=element;while(current.parent){chain.push(current.parent);current=this.elements.find(e=>e.id===current.parent);if(!current)break;}
+this.parentChainCache.set(element.id,chain);});}
+highlightElements(elements){const highlightedElements=Array.from(this.container.querySelectorAll('.highlighted'));highlightedElements.forEach(el=>el.classList.remove('highlighted'));elements.forEach(element=>{this.highlightElementAndParents(element);});}
+highlightElementAndParents(element){const elementSpan=this.spanCache.get(element.id);if(!elementSpan)return;if(elementSpan.classList.contains('highlighted'))return;elementSpan.classList.add('highlighted');const parentChain=this.parentChainCache.get(element.id);if(parentChain){for(const parentId of parentChain){const parentSpan=this.spanCache.get(parentId);if(!parentSpan)continue;if(parentSpan.classList.contains('highlighted'))break;parentSpan.classList.add('highlighted');}}}
+setupCaretHandlers(){this.container.querySelectorAll('.caret').forEach(caret=>{caret.addEventListener('click',function(e){e.stopPropagation();this.classList.toggle('caret-down');const nestedList=getNextSibling(this,'.nested');if(nestedList){nestedList.classList.toggle('active');}});});}
+setupExpandAllHandler(){this.expandAllBtn.addEventListener('click',()=>{const isExpanded=this.expandAllBtn.dataset.expanded==='true';const carets=this.container.querySelectorAll('.caret');carets.forEach(caret=>{const nestedList=getNextSibling(caret,'.nested');if(isExpanded){caret.classList.remove('caret-down');if(nestedList)nestedList.classList.remove('active');}else{caret.classList.add('caret-down');if(nestedList)nestedList.classList.add('active');}});this.expandAllBtn.dataset.expanded=(!isExpanded).toString();this.expandAllBtn.textContent=isExpanded?'Ava kõik':'Sulge kõik';});}}
+  </script>
+<script src="https://unpkg.com/apache-arrow@latest/Arrow.es2015.min.js"></script>
+    <script src="https://unpkg.com/d3@latest/dist/d3.min.js"></script>
+    <script src="https://unpkg.com/deck.gl@latest/dist.min.js"></script>
+    <script src="https://unpkg.com/jquery@3.7.1/dist/jquery.min.js"></script>
+    <script type="module">
+    function debounce(func, timeout = 250) {
+        let timer;
+        return (...args) => {
+            clearTimeout(timer);
+            timer = setTimeout(() => { func.apply(this, args); }, timeout);
+        };
+    }
+
+    async function simpleArrowParser(arrow_bytes) {
+      const table = await Arrow.tableFromIPC(arrow_bytes);
+      const result = {};
+      table.schema.fields.forEach((field) => {
+        result[field.name] = table.getChild(field.name).toArray();
+      });
+      return result;
+    }
+
+    function mergeTypedArrays(arrays) {
+        let totalLength = arrays.reduce((acc, arr) => acc + arr.length, 0);
+        let result = new arrays[0].constructor(totalLength);
+        let currentLength = 0;
+        for (let arr of arrays) {
+            result.set(arr, currentLength);
+            currentLength += arr.length;
+        }
+        return result;
+    }
+
+    function combineTypedTableChunks(tableChunks) {
+      tableChunks.sort((a, b) => a.chunkIndex - b.chunkIndex);
+      const combinedTable = {};
+      Object.keys(tableChunks[0].chunkData).forEach((key) => {
+        const arrays = tableChunks.map((chunk) => chunk.chunkData[key]);
+        combinedTable[key] = mergeTypedArrays(arrays);
+      });
+      return combinedTable;
+    }
+
+    function combineTableChunks(tableChunks) {
+      tableChunks.sort((a, b) => a.chunkIndex - b.chunkIndex);
+      const combinedTable = {};
+      Object.keys(tableChunks[0].chunkData).forEach((key) => {
+        const arrays = tableChunks.map((chunk) => chunk.chunkData[key]);
+        combinedTable[key] = arrays.flat();
+      });
+      return combinedTable;
+    }
+    if (!("CompressionStream" in window)) {
+      throw new Error(
+        "Your browser doesn't support the Compression Streams API " +
+          "https://developer.mozilla.org/docs/Web/API/Compression_Streams_API#browser_compatibility",
+      );
+    }
+
+    
+
+    
+
+    // const currentURL = self.location.pathname;
+    // const directoryPath = currentURL.substring(0, currentURL.lastIndexOf('/') + 1);
+    // const originURL = self.location.origin + directoryPath;
+    const originURL = self.location.origin.trimEnd('/');
+
+    const pointDataEncoded = [
+      `${originURL}/plot_point_data_0.zip`,
+      ];
+    const hoverDataEncoded = [
+      `${originURL}/plot_meta_data_0.zip`,
+      ];
+    const labelDataEncoded = [`${originURL}/plot_label_data.zip`];
+    
+    const histogramBinDataEncoded = [`${originURL}/plot_histogram_bin_data.zip`];
+    const histogramIndexDataEncoded = [`${originURL}/plot_histogram_index_data.zip`];
+    
+    
+    const colorDataEncoded = [
+      `${originURL}/plot_color_data_0.zip`,
+      ];
+    
+    
+
+    // Blob for the parsing worker
+    const parsingWorkerBlob = new Blob([`
+      self.onmessage = async function(event) {
+        const { encodedData, JSONParse } = event.data;
+        async function decompressFile(filename) {
+          try {
+            const response = await fetch(filename);
+            if (!response.ok) {
+              throw new Error(\`HTTP error! status: \${response.status}. Failed to fetch: \${filename}\`);
+            }
+            const reader = response.body
+              .pipeThrough(new DecompressionStream("gzip"))
+              .getReader();
+
+            let chunks = [];
+            let totalSize = 0;
+
+            while (true) {
+              const { done, value } = await reader.read();
+              if (done) {
+                break;
+              }
+              chunks.push(value);
+              totalSize += value.length;
+            }
+
+            // Concatenate chunks into a single Uint8Array
+            const decompressedData = new Uint8Array(totalSize);
+            let position = 0;
+            for (const chunk of chunks) {
+              decompressedData.set(chunk, position);
+              position += chunk.length;
+            }
+
+            return decompressedData;
+          } catch (error) {
+            console.error('Decompression failed:', error);
+            throw error;
+          }
+        }
+        let processedCount = 0;
+        const decodedData = encodedData.map(async (file, i) => {
+          const binaryData = await decompressFile(file);
+          processedCount += 1;
+          self.postMessage({ type: "progress", progress: Math.round(((processedCount) / encodedData.length) * 95) });
+
+          if (JSONParse) {
+            const parsedData = JSON.parse(new TextDecoder("utf-8").decode(binaryData));
+            return { chunkIndex: i, chunkData: parsedData };
+          } else {
+            return { chunkIndex: i, chunkData: binaryData };
+          }
+        });
+        self.postMessage({ type: "data", data: await Promise.all(decodedData) });
+      }
+    `], { type: 'application/javascript' });
+    const workerUrl = URL.createObjectURL(parsingWorkerBlob);
+    const searchItemId = "text-search";
+    const histogramItemId = "d3histogram-container";
+    const selectionItemId = "lasso-select";
+    const searchItem = document.getElementById(searchItemId);
+    let histogramItem = null;
+
+    const container = document.getElementById('deck-container');
+
+    const labelDataWorker = new Worker(workerUrl);
+    const pointDataWorker = new Worker(workerUrl);
+    const metaDataWorker = new Worker(workerUrl);
+    
+    const histogramBinDataWorker = new Worker(workerUrl);
+    const histogramIndexDataWorker = new Worker(workerUrl);
+    
+    const colorDataWorker = new Worker(workerUrl);
+    
+    
+
+    const datamap = new DataMap({
+      container: container,
+      bounds: [-11.606200137485239, 11.599476735069368, -10.94090426643763, 10.979202275193575],
+      searchItemId: searchItemId,
+      lassoSelectionItemId: selectionItemId
+    });
+
+    function updateProgressBar(id, progress) {
+      const progressBar = document.querySelector(`#${id} .datamapplot-progress-bar-fill`);
+      const progressText = document.querySelector(`#${id} .datamapplot-progress-bar-text`);
+      progressBar.style.width = `${progress}%`;
+      progressText.textContent = `${id.replace('-progress', '').replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}: ${progress}%`;
+    }
+
+    function checkAllDataLoaded() {
+      const progressBars = document.querySelectorAll('.datamapplot-progress-bar-fill');
+      const allLoaded = Array.from(progressBars).every(bar => bar.style.width === '100%');
+      if (allLoaded) {
+        document.getElementById("loading").style.display = "none";
+        document.getElementById("progress-container").style.display = "none";
+      }
+    }
+
+    function loadPointDataLayer() {
+      pointDataWorker.postMessage({encodedData: pointDataEncoded, JSONParse: false});
+
+      pointDataWorker.onmessage = async function(event) {
+        if (event.data.type === "progress") {
+          updateProgressBar('point-data-progress', event.data.progress);
+        } else {
+          const { data } = event.data;
+          
+          const chunkArray = data.map(async ({ chunkIndex, chunkData }) => {
+            return {chunkIndex: chunkIndex, chunkData: await simpleArrowParser(chunkData)};
+          });
+          const pointData = await Promise.all(chunkArray).then(combineTypedTableChunks);
+          
+          datamap.addPoints(
+            pointData,
+            {
+              pointSize: 0.09021493529717253,
+              pointOutlineColor: [250, 250, 250, 128],
+              pointLineWidth: 0.001,
+              pointHoverColor: [170, 0, 0, 187],
+              pointLineWidthMaxPixels: 3,
+              pointLineWidthMinPixels: 0.001,
+              pointRadiusMaxPixels: 24,
+              pointRadiusMinPixels: 0.01,
+            }
+          );
+
+          document.getElementById("loading").style.display = "none";
+          updateProgressBar('point-data-progress', 100);
+          checkAllDataLoaded();}
+      };
+
+      
+      colorDataWorker.postMessage({encodedData: colorDataEncoded, JSONParse: false});
+
+      colorDataWorker.onmessage = async function(event) {
+        if (event.data.type === "progress") {
+          updateProgressBar('color-data-progress', event.data.progress);
+          // console.log("Color data progress: ", event.data.progress);
+        } else {
+          const { data } = event.data;
+          
+          const chunkArray = data.map(async ({ chunkIndex, chunkData }) => {
+            return {chunkIndex: chunkIndex, chunkData: await simpleArrowParser(chunkData)};
+          });
+          const colorData = await Promise.all(chunkArray).then(combineTypedTableChunks);
+          
+
+          document.getElementById("loading").style.display = "none";
+          updateProgressBar('color-data-progress', 100);
+          checkAllDataLoaded();
+
+          const colorMapContainer = document.getElementById("colormap-selector-container");
+          const legendContainer = document.getElementById("legend-container");
+
+          const colorMaps = [{"field": "none", "description": "KLASTRID", "colors": ["#90b6c9", "#8d321e", "#5f53b4", "#3e7933", "#d69f7b"], "kind": "categorical"}, {"field": "layer_0", "description": "I ASTME KLASTRID", "colors": ["#dcc9ee", "#0d8d1c", "#0d8d1c", "#0d8d1c", "#0d8d1c", "#999999"], "kind": "categorical", "nColors": 5, "vmin": null, "vmax": null, "showLegend": true, "colorMapping": {"EESTI MILITAARAJALUGU": "#0d8d1c", "FILOSOOFIA, \u00dcHISKOND, KULTUUR": "#dcc9ee", "OUTLIERS": "#999999"}}, {"field": "layer_1", "description": "II ASTME KLASTRID", "colors": ["#e0a472", "#5e99d4", "#bc418a", "#098628", "#accbe1", "#0d8d1c", "#005642", "#c88d2b", "#a3c1ea", "#66c5bd", "#c856ae", "#f4caaa", "#8fccd9", "#0095bc", "#c1cdef", "#a30043", "#ba6800", "#ed9bbc", "#799ce8", "#f7b4a0", "#999999"], "kind": "categorical", "nColors": 5, "vmin": null, "vmax": null, "showLegend": true, "colorMapping": {"EESTI MILITAARAJALUGU": "#0d8d1c", "ARVUSTUSED JA KRIITIKA": "#005642", "EESTI DEMOGRAAFIA": "#c88d2b", "EESTI KULTUURILUGU": "#a3c1ea", "EESTI M\u00d5TTELUGU": "#66c5bd", "FILOSOOFIA JA TEADMINE": "#c856ae", "KEEL, KULTUUR, HARIDUS": "#f4caaa", "KIRIK JA AJALUGU": "#8fccd9", "KIRJANDUS JA MUUSIKA": "#0095bc", "KULTUURI- JA KIRJANDUSUURINGUD": "#c1cdef", "MATEMAATILINE F\u00dc\u00dcSIKA": "#a30043", "MEDITSIIN JA RAVI": "#ba6800", "SARIV\u00c4LJAANDED": "#ed9bbc", "TEOLOOGIA JA RELIGIOON": "#799ce8", "\u00d5IGUS JA EETIKA": "#f7b4a0", "OUTLIERS": "#999999"}}, {"field": "layer_2", "description": "III ASTME KLASTRID", "colors": ["#90b6c9", "#8d321e", "#5f53b4", "#3e7933", "#d69f7b", "#005642", "#a3c1ea", "#66c5bd", "#662800", "#d45372", "#a8d9d1", "#005260", "#006992", "#a934c1", "#7700e5", "#a81906", "#a82900", "#9e7d00", "#008763", "#afd7e1", "#db7c45", "#8e93eb", "#b993e6", "#dcbbe8", "#24b893", "#3dbda0", "#9dcfde", "#bb9528", "#d0d8a9", "#c7c988", "#8a2500", "#5ac1c2", "#008a63", "#0000ff", "#00929e", "#8200cd", "#00a9af", "#e6c08a", "#00b2bc", "#ccdcb2", "#882d00", "#00a696", "#00aa81", "#004d06", "#006cd1", "#4f3800", "#b9ae52", "#a8d19f", "#54a03a", "#00710f", "#9a5600", "#f1c19b", "#9acbe1", "#004100", "#72ae53", "#00974b", "#00933a", "#1d5d00", "#003800", "#fac2b8", "#b2a947", "#660001", "#db6459", "#00a086", "#b8c783", "#bcc986", "#504600", "#af55cf", "#7d00e2", "#850100", "#b6bd6d", "#b07600", "#78bbdd", "#7f3100", "#ab58d4", "#a766dd", "#8c22d9", "#926ae6", "#8263e8", "#5f0000", "#5b5d00", "#005683", "#1fa6d1", "#cd5eae", "#57acdb", "#e7b077", "#9fd6bf", "#6c00a6", "#dd914e", "#787600", "#cd72c4", "#431b00", "#80009d", "#d280cb", "#00ae79", "#2f00ff", "#003fdf", "#0075d6", "#009b91", "#aec3ec", "#008181", "#009fc6", "#8e003a", "#a3002b", "#9ca7ec", "#dcb5e5", "#e89467", "#e288bb", "#83cec1", "#bfc1ef", "#c8b7ed", "#720000", "#85a841", "#fbc5c1", "#008418", "#8ec1e3", "#dbc284", "#f7b6a3", "#c9801f", "#ee8e86", "#83007d", "#ecb0d3", "#2fb2c9", "#007892", "#5792e4", "#85c385", "#9dd5b7", "#7f5200", "#715000", "#f8c1aa", "#640033", "#9a3c00", "#bb870c", "#c1abeb", "#c992de", "#0062b5", "#bb3a1a", "#d79f51", "#5a28ef", "#e16c7d", "#aba9ed", "#e99a6b", "#d489d0", "#35a95a", "#4d8b00", "#346700", "#9b0095", "#a391ea", "#907600", "#c04617", "#e88867", "#008f63", "#ad0084", "#8a00b8", "#006866", "#783f00", "#3334ef", "#6a8700", "#0090c1", "#007800", "#cf612e", "#2abaaf", "#928800", "#c53878", "#005c1e", "#006e1f", "#ce8b32", "#a4d8ca", "#bf9227", "#e77c8e", "#e47767", "#9f0068", "#a7cee6", "#bd2975", "#d65a89", "#6200f4", "#0044e8", "#c87214", "#0067c0", "#b95500", "#a85f00", "#263100", "#f0bcd9", "#00923c", "#a10070", "#0088aa", "#978feb", "#61a2e2", "#403eed", "#929e2a", "#754c00", "#7600fa", "#2a4b00", "#7000ea", "#999999"], "kind": "categorical", "nColors": 5, "vmin": null, "vmax": null, "showLegend": false, "colorMapping": {"ARVUSTUSED JA KRIITIKA": "#005642", "EESTI KULTUURILUGU": "#a3c1ea", "EESTI M\u00d5TTELUGU": "#66c5bd", "2011. AASTA RAHVALOENDUS": "#662800", "AJA M\u00d5ISTE": "#d45372", "AJAKIRJA J\u00c4RJED": "#a8d9d1", "AKADEEMIA JUUBEL": "#005260", "ALLIKSAARE ILUKIRJANDUS": "#006992", "ANAL\u00dc\u00dcTILINE FILOSOOFIA": "#a934c1", "ARVO M\u00c4GI M\u00c4LESTUSED": "#7700e5", "ASTRONOOMIA JA KOSMOS": "#a81906", "AUTISM, H\u00c4IRED LASTEL": "#a82900", "AVALIKU SEKTORI JUHTIMINE": "#9e7d00", "BALTISAKSLASTE IDENTITEET": "#008763", "BASKI KEELE KIRJANDUS": "#afd7e1", "BIOEETIKA JA \u00d5IGUS": "#db7c45", "CICERO JA EPISTOLOGRAAFIA": "#8e93eb", "DELEUZE'I JA FOUCAULT' M\u00d5TE": "#b993e6", "DEMOKRAATIA P\u00d5HIM\u00d5TTED": "#dcbbe8", "EESTI AJALOO SUURKUJUD": "#24b893", "EESTI AKADEEMILINE AJALUGU": "#3dbda0", "EESTI FILMIKUNST": "#9dcfde", "EESTI GEOGRAAFIA": "#bb9528", "EESTI HARIDUS": "#d0d8a9", "EESTI KEEL JA \u00dcHISKOND": "#c7c988", "EESTI KEELE VARIATSIOONID": "#8a2500", "EESTI KEELETEADLASED": "#5ac1c2", "EESTI KESKAEG": "#008a63", "EESTI KIRIKUAJALUGU": "#0000ff", "EESTI KIRJANDUS": "#00929e", "EESTI KIRJANDUSFILOSOOFIA": "#8200cd", "EESTI KIRJANDUSTEGELASED": "#00a9af", "EESTI KULTUURIP\u00c4RAND": "#e6c08a", "EESTI KUNSTI AJALUGU": "#00b2bc", "EESTI K\u00d5RGHARIDUS": "#ccdcb2", "EESTI MEDITSIINI AJALUGU": "#882d00", "EESTI MEEDIA ARENG": "#00a696", "EESTI MERENDUS": "#00aa81", "EESTI PAGULASTE SAATUS": "#004d06", "EESTI PIIBLI AJALUGU": "#006cd1", "EESTI RAHAPOLIITIKA": "#4f3800", "EESTI RAHVASTIKUR\u00c4NNE": "#b9ae52", "EESTI RAHVUSLIK \u00c4RKAMINE": "#a8d19f", "EESTI RIIKLUS": "#54a03a", "EESTI S\u00d5JAAJALUGU": "#00710f", "EESTI S\u00dcNNITUSKOMBED": "#9a5600", "EESTI TEADUSPOLIITIKA": "#f1c19b", "EESTI TEATRI ARENG": "#9acbe1", "EESTI VABARIIGI J\u00c4RJEPIDEVUS": "#004100", "EESTI VABARIIGI P\u00d5HISEADUS": "#72ae53", "EESTI VABARIIK 1918": "#00974b", "EESTI VASTUPANULIIKUMINE": "#00933a", "EESTI V\u00c4LISPOLIITIKA": "#1d5d00", "EESTI V\u00c4LISTEENISTUS": "#003800", "EESTI \u00d5IGUSM\u00d5TE": "#fac2b8", "EESTLASTE V\u00c4LJAR\u00c4NNE": "#b2a947", "EINSTEINI RELATIIVSUSTEOORIA": "#660001", "ELU SEADUSED": "#db6459", "ELULOOD JA LOOMING": "#00a086", "ETNILINE KOOSEKSISTEERIMINE": "#b8c783", "ETNILISED IDENTITEEDID JA RIIK": "#bcc986", "EUROOPA LIIDU \u00d5IGUS": "#504600", "FILOSOOFILINE M\u00d5TE": "#af55cf", "FRAZERI KULDNE OKS": "#7d00e2", "GEENID JA ELU": "#850100", "GELLNERI RAHVUSLUS": "#b6bd6d", "GEOGRAAFILISED EKSPEDITSIOONID": "#b07600", "GOETHE TEOSED": "#78bbdd", "HAIGUSED JA EPIDEEMIAD": "#7f3100", "HANNAH ARENDT JA VABADUS": "#ab58d4", "HEIDEGGERI FILOSOOFIA": "#a766dd", "HERMENEUTIKA JA M\u00d5ISTMINE": "#8c22d9", "HIINA M\u00d5TTELUGU": "#926ae6", "HING JA BUDISM": "#8263e8", "HUIZINGA TEOSE J\u00c4RJEJUTUD": "#5f0000", "HUNTINGTON JA TSIVILISATSIOONID": "#5b5d00", "ILUKIRJANDUS JA LUULE": "#005683", "ILUKIRJANDUSE RUBRIIK": "#1fa6d1", "ISIKU M\u00d5ISTE": "#cd5eae", "ISLAMI MAAILM": "#57acdb", "J\u00c4TKUSUUTLIK ARENG": "#e7b077", "KALEVIPOEG JA IDENTITEET": "#9fd6bf", "KAPLANI DEMONSTRATIIVID": "#6c00a6", "KASVU PIIRID": "#dd914e", "KAUKAASIA KONFLIKTID": "#787600", "KEEL, TUNNETUS, SUHTLUS": "#cd72c4", "KEELE- JA KIRJANDUSKRIITIKA": "#431b00", "KEELEFILOSOOFIA": "#80009d", "KEELELINE POEETIKA": "#d280cb", "KEKKONEN JA EESTI": "#00ae79", "KESKAEGNE KUNSTIFILOSOOFIA": "#2f00ff", "KESKAEGSED VAIMULIKUD": "#003fdf", "KIRIKUKALENDRI P\u00dcHAD": "#0075d6", "KIRJANDUS JA KIRJASTAMINE": "#009b91", "KIRJANDUSFILOSOOFIA": "#aec3ec", "KIRJANDUSKRIITIKA": "#008181", "KIRJANIKUD JA KIRJANDUS": "#009fc6", "KLASSIKALINE MEHAANIKA": "#8e003a", "KOSMOLOOGIA JA F\u00dc\u00dcSIKA": "#a3002b", "KREEKA TRAG\u00d6\u00d6DIA MOTIIVID": "#9ca7ec", "KRIITILINE \u00d5IGUSFILOSOOFIA": "#dcb5e5", "KRIMINAAL\u00d5IGUS": "#e89467", "KULTUURISEMIOOTIKA": "#e288bb", "KULTUURITEOORIA": "#83cec1", "KUNST JA ESTEETIKA": "#bfc1ef", "KUNSTIFILOSOOFIA": "#c8b7ed", "KVANTF\u00dc\u00dcSIKA": "#720000", "K\u00c4ESOLEVA NUMBRI J\u00c4RG": "#85a841", "K\u00d5RGHARIDUSE ARENG": "#fbc5c1", "K\u00dc\u00dcDITAMISED JA VANGILAAGRID": "#008418", "LADINA-AMEERIKA M\u00dcTOLOOGIA": "#8ec1e3", "LINNAEHITUS JA P\u00c4RAND": "#dbc284", "LOODUS JA \u00dcHISKOND": "#f7b6a3", "LOODUSLIKUD RAVIMID": "#c9801f", "LOODUSTEADUS JA MAAILMAVAADE": "#ee8e86", "LOOGIKA JA ONTOLOOGIA": "#83007d", "LOTMANI KULTUURIM\u00c4LU": "#ecb0d3", "LUULE JA NAISKIRJANDUS": "#2fb2c9", "LUULETAJAD JA LUULE": "#007892", "L\u00c4HIS-IDA ANTIIKRELIGIOONID": "#5792e4", "L\u00c4TI ISESEISVUMISE POLIITIKA": "#85c385", "L\u00c4\u00c4NEMERESOOME UURIMINE": "#9dd5b7", "MAAREFORM JA KOLHOOSID": "#7f5200", "MAJANDUS JA ARENG": "#715000", "MAJANDUSOTSUSED JA RISK": "#f8c1aa", "MATEMAATIKA FILOSOOFIA": "#640033", "MEDITSIINITEOORIA": "#9a3c00", "METSANDUS JA AJALUGU": "#bb870c", "MODERNISM JA POSTMODERNISM": "#c1abeb", "MORAALIFILOSOOFIA": "#c992de", "MUUSIKA JA LAUL": "#0062b5", "M\u00c4LESTUSI TEADLASTEST": "#bb3a1a", "M\u00c4RGALAD JA ELUPAIGAD": "#d79f51", "M\u00d5TTELUGU JA USK": "#5a28ef", "NATURALISM TEADUSFILOSOOFIAS": "#e16c7d", "NIETZSCHE FILOSOOFIA": "#aba9ed", "NOORED JA KARISTUS\u00d5IGUS": "#e99a6b", "NORMATIIVNE FILOSOOFIA": "#d489d0", "N\u00d5UKOGUDE EESTI AJALUGU": "#35a95a", "N\u00d5UKOGUDE KURITEOD EESTIS": "#4d8b00", "N\u00d5UKOGUDE POLIITIKA BALTIKUMIS": "#346700", "ONTOLOOGIA JA MODAALSUS": "#9b0095", "PLATON JA FILOLOOGIA": "#a391ea", "PRIVATISEERIMINE JA MAJANDUS": "#907600", "PS\u00dcHHIAATRIA JA PS\u00dcHHOANAL\u00dc\u00dcS": "#c04617", "PS\u00dcHHOANAL\u00dc\u00dcS JA FILOSOOFIA": "#e88867", "P\u00d5HJAS\u00d5DA JA KUNINGAD": "#008f63", "P\u00d5HJUSED, TEGEVUS, T\u00d5DE": "#ad0084", "QUINE JA T\u00d5DE": "#8a00b8", "RAAMATUARVUSTUSED": "#006866", "RAHVASTIK JA PEREKOND": "#783f00", "REFORMATSIOON JA TEOLOOGIA": "#3334ef", "RIIKLUS JA IDEOLOOGIA": "#6a8700", "SAKSA KIRJANDUS": "#0090c1", "SALATEENISTUSTE AJALUGU": "#007800", "SEKSUAALSUSE PROBLEEMID": "#cf612e", "SOOME LINGVISTI REISIV\u00c4LJAV\u00d5TTED": "#2abaaf", "SOOME-UGRI RAHVASTE AUTONOOMIA": "#928800", "SOTSIAALTEADUSED JA INIMLOOMUS": "#c53878", "S\u00d5JAP\u00d5GENIKUD 1944": "#005c1e", "S\u00d5JAS\u00dcNDMUSED 1945": "#006e1f", "TAIMENIMED JA KASUTUS": "#ce8b32", "TARTU \u00dcLIKOOLI AJALUGU": "#a4d8ca", "TARTU \u00dcLIKOOLI BOTAANIKAAED": "#bf9227", "TEADUS JA RELIGIOON": "#e77c8e", "TEADUSE UURINGUD": "#e47767", "TEADVUS JA AJU": "#9f0068", "TEATER JA ETENDUS": "#a7cee6", "TEHISINTELLEKT JA INIMENE": "#bd2975", "TEHNOLOOGIA, INIMENE, TULEVIK": "#d65a89", "TEOLOOGILINE DISKURSUS": "#6200f4", "TEOLOOGILINE M\u00d5TLEMINE": "#0044e8", "UIMASTITE TARVITAMINE": "#c87214", "UKU MASINGU M\u00c4LESTUS": "#0067c0", "UURALI KEELED JA RAHVAD": "#b95500", "UURALI RAHVASTE RITUAALID": "#a85f00", "UUS JULGEOLEKUKESKKOND": "#263100", "VABADUS, V\u00d5IM, LEPING": "#f0bcd9", "VABADUSS\u00d5JALASTE LIIKUMINE": "#00923c", "VAIM JA KEHA": "#a10070", "VANA EESTI LUULE": "#0088aa", "VANA-KREEKA FILOSOOFIA": "#978feb", "VANA-L\u00c4HIS-IDA KUNINGAD": "#61a2e2", "VARAKRISTLIK GNOSTITSISM": "#403eed", "VENE KULTUUR JA IDENTITEET": "#929e2a", "VENE P\u00d5LEVKIVIT\u00d6\u00d6STUS": "#754c00", "VIIPEKEELED JA KURDID": "#7600fa", "V\u00c4LISPOLIITIKA JA JULGEOLEK": "#2a4b00", "V\u00d5RDLEV USUTEADUS": "#7000ea", "OUTLIERS": "#999999"}}, {"field": "date", "description": "KUU", "colors": ["#000000", "#000104", "#010308", "#01040b", "#02050f", "#020613", "#020716", "#030819", "#03091c", "#030a1f", "#030b22", "#040c25", "#040d27", "#040e29", "#040e2c", "#050f2e", "#051030", "#051132", "#051134", "#051236", "#061238", "#061339", "#06143b", "#06143d", "#06153e", "#061540", "#071642", "#071643", "#071745", "#071747", "#071848", "#07184a", "#08194c", "#081a4e", "#081a4f", "#081b51", "#081b53", "#081c54", "#091c56", "#091d58", "#091e5a", "#091e5b", "#091f5d", "#091f5f", "#0a2060", "#0a2062", "#0a2164", "#0a2266", "#0a2267", "#0b2369", "#0b236b", "#0b246d", "#0b246f", "#0b2570", "#0b2672", "#0c2674", "#0c2776", "#0c2777", "#0c2879", "#0c297b", "#0c297d", "#0d2a7f", "#0d2a81", "#0d2b82", "#0d2c85", "#0d2d87", "#0e2d89", "#0e2e8b", "#0e2e8c", "#0e2f8e", "#0e3090", "#0f3092", "#0f3194", "#0f3196", "#0f3298", "#0f3399", "#10339b", "#10349d", "#10349f", "#1035a1", "#1036a3", "#1036a5", "#1137a7", "#1138a8", "#1138aa", "#1139ac", "#1139ae", "#123ab0", "#123bb2", "#123bb4", "#123cb6", "#123db8", "#133dba", "#133ebc", "#133fbe", "#133fbf", "#1340c1", "#1440c3", "#1441c5", "#1442c7", "#1442c9", "#1443cb", "#1544cd", "#1544cf", "#1545d1", "#1546d3", "#1546d5", "#1547d7", "#1648d9", "#1648db", "#1649dd", "#164adf", "#164ae1", "#174be3", "#174ce5", "#174ce7", "#174de9", "#174deb", "#184eed", "#184fef", "#184ff1", "#1850f3", "#1851f5", "#1951f7", "#1952f9", "#1953fb", "#1953fd", "#1a54ff"], "kind": "datetime", "nColors": 5, "valueRange": ["1989-02-01T00:00:00", "2025-02-01T00:00:00"]}, {"field": "density", "description": "TIHEDUS", "colors": ["#f1f1f1", "#eff0f0", "#eeeff0", "#eceef0", "#eaedf0", "#e9ecf0", "#e7ebf0", "#e6eaf0", "#e4e9f0", "#e3e8ef", "#e1e7ef", "#e0e6ef", "#dee5ef", "#dde4ef", "#dbe3ef", "#dae2ee", "#d8e1ee", "#d7e1ee", "#d5e0ee", "#d4dfee", "#d2deee", "#d1dded", "#cfdced", "#cddbed", "#ccdaed", "#cad9ed", "#c9d8ec", "#c7d7ec", "#c6d6ec", "#c4d5ec", "#c3d4ec", "#c1d3eb", "#c0d2eb", "#bed2eb", "#bdd1eb", "#bbd0ea", "#bacfea", "#b8ceea", "#b7cde9", "#b5cce9", "#b4cbe9", "#b2cae9", "#b1c9e8", "#afc8e8", "#aec7e7", "#acc6e7", "#abc5e7", "#a9c5e6", "#a8c4e6", "#a6c3e6", "#a5c2e5", "#a3c1e5", "#a2c0e4", "#a1bfe4", "#9fbee3", "#9ebde2", "#9dbce2", "#9bbbe1", "#9abae1", "#99b9e0", "#98b8df", "#96b7de", "#95b7de", "#94b6dd", "#92b4dc", "#91b3db", "#90b2da", "#8fb1d9", "#8eb0d9", "#8dafd8", "#8bafd7", "#8aaed6", "#89add5", "#88acd4", "#87abd4", "#86aad3", "#85a9d2", "#84a8d1", "#83a7d0", "#82a6cf", "#81a5ce", "#80a4cd", "#7fa3cc", "#7ea2cb", "#7da1ca", "#7ca0c9", "#7ba0c8", "#7a9fc7", "#799ec7", "#789dc6", "#779cc5", "#769bc4", "#749ac3", "#7399c3", "#7298c2", "#7197c1", "#6f96c1", "#6e96c0", "#6d95bf", "#6b94bf", "#6a93be", "#6992be", "#6791bd", "#6690bc", "#648fbc", "#638ebb", "#618ebb", "#608dba", "#5e8cba", "#5d8bb9", "#5b8ab9", "#5a89b8", "#5888b8", "#5687b8", "#5487b7", "#5386b7", "#5185b6", "#4f84b6", "#4d83b5", "#4b82b5", "#4a81b5", "#4881b4", "#4680b4", "#437fb3", "#417eb3", "#3f7db3", "#3d7cb2", "#3b7cb2"], "kind": "continuous", "nColors": 5, "valueRange": [0.0011269765241187658, 0.038051587210449024]}];
+          const colorSelector = new ColormapSelectorTool(
+            colorMaps,
+            colorMapContainer,
+            colorData,
+            legendContainer,
+            datamap,
+          );
+          datamap.colorSelector = colorSelector;
+        }
+      };
+      
+
+      
+    }
+
+    function loadLabelDataLayer() {
+      labelDataWorker.postMessage({encodedData: labelDataEncoded, JSONParse: true});
+
+      labelDataWorker.onmessage = async function(event) {
+        if (event.data.type === "progress") {
+          updateProgressBar('label-data-progress', event.data.progress);
+        } else {
+          const { data } = event.data;
+          // This is your flat array of all 206+ label objects
+          const labelData = data[0].chunkData;
+          // Keep the original flat data for other uses (like topic tree)
+          datamap.labelData = labelData;
+
+          // --- START: MODIFICATION ---
+          // The original code passed `labelData` (or a filtered version) directly.
+          // We must now group this flat array into a nested array based on `layer_index`.
+
+          // 1. Apply the original filter (if any)
+          const filteredLabelData =labelData.filter((d) => {return !(d.id && d.id.endsWith('-1'))});
+
+          // 2. Group the filtered data by 'layer_index'
+          // This creates an object like {0: [labels...], 1: [labels...], 2: [labels...]}
+          const groupedByLayer = filteredLabelData.reduce((acc, label) => {
+            // Use layer_index, default to 0 if it's missing
+            const layerIndex = label.layer_index || 0;
+            if (!acc[layerIndex]) {
+              acc[layerIndex] = [];
+            }
+            acc[layerIndex].push(label);
+            return acc;
+          }, {});
+
+          // 3. Convert the object into a sorted array of arrays
+          // This gives us the final [ [layer_0_labels], [layer_1_labels], ... ]
+          const labelDataArray = Object.keys(groupedByLayer)
+            .sort((a, b) => parseInt(a, 10) - parseInt(b, 10)) // Sort keys numerically
+            .map(key => groupedByLayer[key]); // Get the array for each key
+
+          // Optional: Log to confirm the new structure
+          console.log(`Transformed ${filteredLabelData.length} labels into ${labelDataArray.length} layers.`);
+          if (labelDataArray.length > 0) {
+            console.log(`Labels in first (zoomed-in) layer: ${labelDataArray[0].length}`);
+          }
+          // --- END: MODIFICATION ---
+
+
+          // Only build labels where we have a position.
+          datamap.addLabels(
+            labelDataArray, // <-- Pass the NEW nested array
+            {
+            labelTextColor: [0, 0, 0, 255],
+            textMinPixelSize: 18,
+            textMaxPixelSize: 36,
+            textOutlineWidth: 8,
+            textOutlineColor: [238, 238, 238, 221],
+            textBackgroundColor: [255, 255, 255, 64],
+            fontFamily: "Josefin Sans",
+            fontWeight: 600,
+            lineSpacing: 0.95,
+            textCollisionSizeScale: 3,
+            noiseLabel: "OUTLIERS",
+            pickable: false,
+          });
+
+          
+            const topicTreeContainer = document.querySelector('#topic-tree');
+
+            
+            const topicTree = new TopicTree(
+                topicTreeContainer,
+                datamap,
+                false,
+                null,
+                {
+                  title:"TEEMAD",
+                  maxWidth:"30vw",
+                  maxHeight:"42vh",
+                  fontSize:"12pt",
+                  colorBullets:true,
+                }
+            );
+            const debouncedTopicTreeHandler = debounce(({viewState, interactionState}) => {
+                const userIsInteracting = Object.values(interactionState).every(Boolean);
+                if (!userIsInteracting) {
+                    const visible = getVisibleTextData(viewState)
+                    if (visible) {
+                        topicTree.highlightElements(visible)
+                    };
+                };
+            }, 150);
+
+            // --- MODIFICATION ---
+            // Get the map's essential handler that we set in the constructor
+            const primaryMapHandler = datamap.deckgl.props.onViewStateChange;
+
+            // Create a new, combined handler
+            const combinedHandler = (e) => {
+                primaryMapHandler(e); // This makes the map pan/zoom
+                debouncedTopicTreeHandler(e); // This updates the topic tree
+            };
+
+            datamap.deckgl.setProps({
+                onViewStateChange: combinedHandler, // Set the new combined handler
+            });
+
+          
+          
+          document.getElementById("loading").style.display = "none";
+          updateProgressBar('label-data-progress', 100);
+          checkAllDataLoaded();
+        }
+      };
+    }
+
+    function loadMetaData() {
+      metaDataWorker.postMessage({encodedData: hoverDataEncoded, JSONParse: true});
+
+      metaDataWorker.onmessage = async function(event) {
+        if (event.data.type === "progress") {
+          updateProgressBar('meta-data-progress', event.data.progress);
+        } else {
+          const { data } = event.data;
+          const hoverData = combineTableChunks(data);
+          datamap.addMetaData(hoverData, {
+            tooltipFunction: ({index}) => hoverData.hover_text[index],
+            onClickFunction: ({index, picked, layer}, event) => { if (picked) {
+            // This JS will be executed when a point is clicked.
+            // The {property} syntax will be replaced with the actual data of the clicked point.
+            let container = document.getElementById("point-info-container");
+            if (!container) {
+                console.error("Container #point-info-container not found!");
+                return;
+            }
+            
+            const headerMeta = document.getElementById("point-header-meta");
+            if (headerMeta) {
+                headerMeta.innerHTML = `${hoverData.date[index]}`;
+            }
+
+            const contentBox = document.getElementById("point-info-content");
+            contentBox.innerHTML = `
+                <div class="article-card">
+                    <div class="article-header">
+                        <div class="title"><p>${hoverData.title[index]}</p></div>
+                        <div class="author-info"><p><em>${hoverData.author[index]}</em></p><p class="text-gray"><em>${hoverData.info[index]}</em></p></div>
+                    </div>
+                    <div class="article-body">
+                        <div class="abstract-container"><p class="abstract-text is-clamped">${hoverData.abstract[index]}</p><button class="toggle-abstract-btn">Loe edasi</button></div>
+                        <div><a href="${hoverData.file_path[index]}" target="_blank" class="goto-article-btn outline" style="text-decoration: none;">&gt;&nbsp; NÄITA NUMBRIS</a></div>
+                    </div>
+                </div>
+            `;
+
+            const abstractText = contentBox.querySelector('.abstract-text');
+            const toggleBtn = contentBox.querySelector('.toggle-abstract-btn');
+            if (abstractText && toggleBtn) {
+                toggleBtn.onclick = (e) => {
+                    e.preventDefault();
+                    abstractText.classList.toggle('is-clamped');
+                    toggleBtn.textContent = abstractText.classList.contains('is-clamped') ? "Loe edasi" : "Sulge";
+                };
+            }
+            container.style.display = "block";
+         } },
+            searchField: "hover_text",
+          });
+
+          
+          /* Search */
+          searchItem.addEventListener("input", debounce(event => datamap.searchText(event.target.value)));
+          updateProgressBar('meta-data-progress', 100);
+          checkAllDataLoaded();
+        }
+      };
+    }
+
+    
+    function loadHistogramBinData() {
+      return new Promise((resolve, reject) => {
+        histogramBinDataWorker.postMessage({encodedData: histogramBinDataEncoded, JSONParse: true});
+
+        histogramBinDataWorker.onmessage = async function(event) {
+          if (event.data.type === "progress") {
+            updateProgressBar('histogram-bin-data-progress', event.data.progress);
+          } else {
+            const { data } = event.data;
+            const histogramBinData = data[0].chunkData;
+            resolve(histogramBinData);
+            updateProgressBar('histogram-bin-data-progress', 100);
+            checkAllDataLoaded();
+          }
+        };
+      });
+    }
+
+    function loadHistogramIndexData() {
+      return new Promise((resolve, reject) => {
+        histogramIndexDataWorker.postMessage({encodedData: histogramIndexDataEncoded, JSONParse: false});
+
+        histogramIndexDataWorker.onmessage = async function(event) {
+          if (event.data.type === "progress") {
+            updateProgressBar('histogram-index-data-progress', event.data.progress);
+          } else {
+            const { data } = event.data;
+            const histogramIndexData = simpleArrowParser(data[0].chunkData);
+            resolve(histogramIndexData);
+            updateProgressBar('histogram-index-data-progress', 100);
+            checkAllDataLoaded();
+          }
+        };
+      });
+    }
+
+    function loadHistogramData() {
+      const chartSelectionCallback = chartSelectedIndices => {
+        // Update data manager
+        if (chartSelectedIndices === null) {
+          datamap.removeSelection(histogramItemId);
+        } else {
+          datamap.addSelection(chartSelectedIndices, histogramItemId);
+        }
+      };
+
+      Promise.all([loadHistogramBinData(), loadHistogramIndexData()]).then(([histogramBinData, histogramIndexData]) => {
+        const histogramData = { rawBinData: histogramBinData, rawIndexData: histogramIndexData };
+        histogramItem = D3Histogram.create({
+          data: histogramData,
+          chartContainerId: histogramItemId,
+          chartWidth: 350,
+          chartHeight: 90,
+          title: "",
+          enableClickPersistence: false,
+          chartSelectionCallback: chartSelectionCallback,
+        });
+
+        datamap.connectHistogram(histogramItem);
+      });
+    }
+    
+    function isBoundsVisible({bounds, viewState}) {
+        const {width, height, longitude, latitude, zoom} = viewState;
+
+        const Viewport = new deck.WebMercatorViewport({
+            width,
+            height,
+            longitude,
+            latitude,
+            zoom,
+        })
+
+        const viewBounds = [
+            [0,0],
+            [width, height],
+        ];
+
+        const minBounds = Viewport.project([bounds[0], bounds[2]]);
+        const maxBounds = Viewport.project([bounds[1], bounds[3]]);
+
+        return (
+            ((minBounds[0] >= 0 && minBounds[0] <= width) || (maxBounds[0] >= 0 && maxBounds[0] <= width)) &&
+            ((minBounds[1] >= 0 && minBounds[1] <= height) || (maxBounds[1] >= 0 && maxBounds[1] <= height))
+        );
+    };
+
+    function getVisibleTextData(viewState) {
+        if (datamap.labelData) {
+            const visibleData = datamap.labelData.filter((d) => {
+                return isBoundsVisible({
+                    bounds: d.bounds,
+                    viewState: viewState,
+                });
+            });
+            return visibleData;
+        };
+    };
+
+    
+    loadPointDataLayer();
+    loadLabelDataLayer();
+    loadMetaData();
+    loadHistogramData();
+    const deckCanvas = document.querySelector('#deck-container canvas');
+
+    document.querySelectorAll('.container-box').forEach(box => {
+        box.addEventListener('wheel', (e) => {
+            // Only forward the event if this specific box doesn't have its own scrollbar
+            if (box.scrollHeight <= box.clientHeight) {
+                e.preventDefault();
+                const wheelEvent = new WheelEvent('wheel', e);
+                deckCanvas.dispatchEvent(wheelEvent);
+            }
+        }, { passive: false });
+    });
+
+    const labelToggle = document.getElementById('label-toggle');
+    if (labelToggle) {
+        labelToggle.addEventListener('change', (e) => {
+            datamap.toggleLabels(e.target.checked);
+        });
+    }
+    </script>
+  </div>
+  </body>
+
+</html>

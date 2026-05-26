@@ -353,9 +353,9 @@ highlightElementAndParents(element){const elementSpan=this.spanCache.get(element
 setupCaretHandlers(){this.container.querySelectorAll('.caret').forEach(caret=>{caret.addEventListener('click',function(e){e.stopPropagation();this.classList.toggle('caret-down');const nestedList=getNextSibling(this,'.nested');if(nestedList){nestedList.classList.toggle('active');}});});}
 setupExpandAllHandler(){this.expandAllBtn.addEventListener('click',()=>{const isExpanded=this.expandAllBtn.dataset.expanded==='true';const carets=this.container.querySelectorAll('.caret');carets.forEach(caret=>{const nestedList=getNextSibling(caret,'.nested');if(isExpanded){caret.classList.remove('caret-down');if(nestedList)nestedList.classList.remove('active');}else{caret.classList.add('caret-down');if(nestedList)nestedList.classList.add('active');}});this.expandAllBtn.dataset.expanded=(!isExpanded).toString();this.expandAllBtn.textContent=isExpanded?'Ava kõik':'Sulge kõik';});}}
   </script>
-<script src="https://unpkg.com/apache-arrow@latest/Arrow.es2015.min.js"></script>
-    <script src="https://unpkg.com/d3@latest/dist/d3.min.js"></script>
+<script src="https://unpkg.com/d3@latest/dist/d3.min.js"></script>
     <script src="https://unpkg.com/deck.gl@latest/dist.min.js"></script>
+    <script src="https://unpkg.com/apache-arrow@latest/Arrow.es2015.min.js"></script>
     <script src="https://unpkg.com/jquery@3.7.1/dist/jquery.min.js"></script>
     <script type="module">
     function debounce(func, timeout = 250) {

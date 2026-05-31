@@ -3,27 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AKADEEMIA soovitaja</title>
+    <title>Akadeemia arhiiv</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Jost:ital,wght@0,100..900;1,100..900&family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="static/css/style.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <nav class="header-nav">
-                <div class="nav-links-left">
-                    <a href="index.html">NUMBRID</a>
-                    <a href="kaart.html">KAART</a>
-                </div>
-                <a href="#">LEHEST</a>
-            </nav>
-            <h1>AKADEEMIA <br> ARHIIV</h1>
-            <p id="status">Laen andmeid...</p>
-            <input type="search" id="search-input" placeholder="Otsi pealkirja, autori, aasta järgi...">
-        </header>
-
+    <header>
+        <nav class="header-nav">
+            <div class="nav-links-left">
+                <a href="index.html">NUMBRID</a>
+                <a href="kaart.html">KAART</a>
+            </div>
+            <a href="https://github.com/hendrimat/akadeemia_arhiiv">LEHEST</a>
+        </nav>
+        <h1>AKADEEMIA <br> ARHIIV</h1>
+        <p id="status">Laen andmeid...</p>
+        <input type="search" id="search-input" placeholder="Otsi inglise keeles...">
+    </header>
+    <div class="container" id="main-container">
         <div id="month-navigator-container" class="month-navigator"></div>
         <main id="articles-container"></main>
     </div>

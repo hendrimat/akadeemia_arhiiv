@@ -129,12 +129,12 @@ body {
     }
 
     /* Search input full width on mobile */
-    .stack.top-left input {
+    .stack.top-left #text-search {
         width: 100%;
     }
 
     /* Hide Desktop Areas */
-    .top-right, .bottom-left, .bottom-right {
+    .top-right, .bottom-left {
       display: none !important;
     }
 
@@ -155,25 +155,25 @@ body {
         display: flex;
         flex-direction: row;
         border-top: 1px solid #bbb;
-        background: #dfe3e8;
-        height: 50px; /* Fixed height for buttons */
+        height: 2.5rem; /* Fixed height for buttons */
+        background: white;
         align-items: stretch;
     }
 
     .tab-button {
+        font-size: medium;
+        font-family: 'Josefin Sans', sans-serif !important;
         flex: 1;
         border: none;
         border-right: 1px solid #bbb; /* Separator */
         background: transparent;
-        font-weight: bold;
-        color: #555;
+        color: black;
         cursor: pointer;
         border-radius: 0;
     }
 
     .tab-button.active {
-      background: #cfd4d9; /* Matches container background */
-      color: #000;
+      font-weight: bold;
     }
     .tab-wrapper {
         flex: 1.75; /* Give more space to colormap selector */
@@ -190,7 +190,7 @@ body {
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
-        background: #dfe3e8;
+        background: white;
 
         /* Constraint: Don't grow larger than 50% of screen */
         max-height: 50vh;
@@ -210,16 +210,19 @@ body {
     .mobile-view.active {
         display: block;
     }
+
   }
 
 /* Selected Point Container Styles */
     #point-info-container {
-        max-width: 300px;
+        display: none;
+        max-width: 600px;
         max-height: 300px;
         overflow-y: auto;
         z-index: 200; /* Ensure it sits above other elements */
         background: rgba(255, 255, 255, 0.95); /* High opacity for readability */
         box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        padding: calc(var(--spacing) * 1.5);
     }
 
     /* Mobile Overrides for Selected Point */
@@ -232,5 +235,6 @@ body {
             max-width: none !important;
             max-height: 35vh !important;
             margin: 1.5rem !important;
+            padding: calc(var(--spacing)*1.5);
         }
     }

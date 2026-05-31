@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AKADEEMIA KAART</title>
+    <title>Akadeemia arhiiv | Kaart</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Jost:ital,wght@0,100..900;1,100..900&family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
@@ -18,7 +18,7 @@
                     <a href="index.html">NUMBRID</a>
                     <a href="kaart.html">KAART</a>
                 </div>
-                <a href="#">LEHEST</a>
+                <a href="https://github.com/hendrimat/akadeemia_arhiiv">LEHEST</a>
             </nav>
     </header>
   <div class="container">
@@ -38,21 +38,18 @@
     {% endif %}
 
     {% if search %}
-    <div id="search-container" class="container-box">
-        <input autocomplete="off" type="search" id="text-search" placeholder="Search..." />
-    </div>
+    <input autocomplete="off" type="search" id="text-search" placeholder="Otsi..." />
     {% endif %}
-
-    <div id="label-toggle-container" class="container-box">
-        <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 14px; user-select: none;">
-            <input type="checkbox" id="label-toggle" checked />
-            Teemad
-        </label>
-    </div>
 
     {% if enable_topic_tree %}
     <div id="topic-tree" class="container-box"></div>
     {% endif %}
+    <div id="label-toggle-container" class="container-box">
+        <label style="display: flex; align-items: center; gap: 2px; cursor: pointer; user-select: none; padding: 0.5rem;">
+            <input type="checkbox" id="label-toggle" checked />
+            Teemade sildid
+        </label>
+    </div>
     </div>
 
     <div class="stack top-right">
@@ -69,11 +66,8 @@
     </div>
 
     <div class="stack bottom-right">
-        <div id="point-info-container" class="container-box" style="display:none;">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:5px; border-bottom:1px solid rgba(0,0,0,0.1); padding-bottom:5px;">
-                <span id="point-header-meta" class="text-gray" style="font-size: 0.8em; text-transform: uppercase;"></span>
-                <span id="point-info-close" style="cursor:pointer; font-weight:bold; font-size:1.5rem; line-height:0.8;">&times;</span>
-            </div>
+        <div id="point-info-container" class="container-box">
+            <div id="point-header-meta" class="text-gray" style="flex: auto" ></div>
             <div id="point-info-content"></div>
         </div>
     </div>

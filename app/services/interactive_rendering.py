@@ -1043,7 +1043,7 @@ def render_html(
     text_outline_width=8,
     text_outline_color="#eeeeeedd",
     point_size_scale=None,
-    point_hover_color="#aa0000bb",
+    point_hover_color="#FEC8D5",
     point_radius_min_pixels=0.01,
     point_radius_max_pixels=24,
     point_line_width_min_pixels=0.001,
@@ -1521,7 +1521,7 @@ def render_html(
                 on_click = (
                     "({index, picked, layer}, event) => { if (picked) {"
                     + on_click.format_map(replacements)
-                    + " } }"
+                    + ' } else { document.getElementById("point-info-container").style.display = "none"; } }'
                 )
 
             if (

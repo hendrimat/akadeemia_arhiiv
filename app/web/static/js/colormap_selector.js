@@ -279,7 +279,7 @@ class ColorLegend {
 // CONTROLLER: Colormap Selector
 // ==========================================
 class ColormapSelectorTool {
-    constructor(colorMaps, colorMapContainer, colorData, legendContainer, datamap, nColors = 5) {
+    constructor(colorMaps, colorMapContainer, colorData, legendContainer, datamap, nColors = 3) {
         this.colorMaps = colorMaps;
         this.colorMapContainer = colorMapContainer;
         this.colorData = colorData;

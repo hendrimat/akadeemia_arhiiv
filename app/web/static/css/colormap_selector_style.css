@@ -5,7 +5,8 @@
 .color-map-dropdown {
     background-color: inherit;
     z-index: 100;
-    position: relative; /* Ensure options position relative to this */
+    position: relative;
+    font-size: medium;
 }
   .color-map-selected {
     display: flex;
@@ -18,15 +19,11 @@
     z-index: 100;
   }
   .color-map-options {
-    /* *** CHANGES START HERE *** */
-    position: absolute; /* Changed from 'fixed' */
-    top: 100%;          /* Changed from 'bottom: 100%' */
-    /* *** CHANGES END HERE *** */
+    position: absolute;
+    top: 100%;
 
     left: 0;
-    /* Remove 'right: 0;' if you want it to respect the 'width' set in JS */
-    /* If you want it to be the same width as the dropdown: */
-    width: 100%; /* Add this if you removed 'right: 0' */
+    width: 100%;
     max-height: 500px;
     overflow-y: auto;
     display: none;
@@ -72,7 +69,6 @@
     width: fit-content;
     gap: 4px;
     padding: 10px;
-    /* font-family: Arial, sans-serif; */
     height: 200px;
     margin: 4px 16px 4px 16px;
   }

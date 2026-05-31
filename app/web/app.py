@@ -20,7 +20,7 @@ embedding_idx_to_article_id = {}
 
 def load_data_and_embeddings():
     """Load all necessary data into memory when the server starts."""
-    global articles_df, corpus_embeddings, article_id_to_embedding_idx, embedding_idx_to_article_id
+    global articles_df, corpus_embeddings, sentence_model, article_id_to_embedding_idx, embedding_idx_to_article_id
 
     print("--- LOADING DATA ---")
 
@@ -204,4 +204,4 @@ def search_articles_endpoint():
 
 # --- Main Execution Block (for local development only) ---
 if __name__ == '__main__':
-    app.run(host='127.0.0.1', port=5000, debug=True)
+    app.run(host='127.0.0.1', port=5000)

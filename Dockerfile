@@ -14,11 +14,11 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the rest of your application code into the container
 COPY . .
 
-# Environment variable for Flask
+# Environment variables
 ENV FLASK_APP=app.py
 ENV FLASK_RUN_HOST=0.0.0.0
 
-# Gunicorn is a production-grade server
-# We use 1 worker and 2 threads.
-# We set a long timeout (300s) to allow for slow model loading at startup.
-CMD ["gunicorn", "--workers=1", "--threads=2", "--timeout=300", "app:app"]
+# Gunicorn execution
+# Shift context to app/web to isolate the application module
+# Bind to 8080 to satisfy Cloud Run ingress
+CMD ["gunicorn", "--chdir", "app/web", "--bind", "0.0.0.0:8080", "--workers=1", "--threads=2", "--timeout=300", "app:app"]

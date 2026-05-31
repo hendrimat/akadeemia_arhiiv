@@ -78,6 +78,8 @@ function createArticleElement(article, { isRecommendation = false } = {}) {
         abstractText.classList.add('is-clamped');
     } else {
         detailsSection.remove();
+        markerEl.style.visibility = 'hidden';
+        detailsEl.querySelector('.article-summary').style.pointerEvents = 'none';
     }
 
     const recsSection = detailsEl.querySelector('[data-template="recs-section"]');
@@ -85,7 +87,7 @@ function createArticleElement(article, { isRecommendation = false } = {}) {
     if (isRecommendation) {
         recsSection.remove();
         gotoSection.style.display = 'block';
-        gotoSection.querySelector('[data-template="goto-btn"]').dataset.targetId = article.id;
+        // gotoSection.querySelector('[data-template="goto-btn"]').dataset.targetId = article.id;
     } else {
         gotoSection.remove();
         if (article.create_embedding) {

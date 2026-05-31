@@ -62,6 +62,13 @@
     margin-top: 5px;
 }
 
+.expand-all-btn {
+    font-family: "Jost", sans-serif !important;
+    background: white;
+    border: 1px solid black;
+    border-radius: 0;
+}
+
 /* --- Mobile Specific Overrides --- */
 @media (max-width: 768px) {
     #topic-tree {

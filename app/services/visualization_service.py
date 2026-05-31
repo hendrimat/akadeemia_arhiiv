@@ -201,7 +201,8 @@ class VisualizationService:
         hover_text = [
             f"{str(row.pealkiri).replace('`', '')}\n"
             f"{str(row.autor).replace('`', '')}\n"
-            f"{'' if specific_topic_names[i] == OUTLIER_NAME else f'Teema: {str(specific_topic_names[i]).replace('`', '')}'}"
+            f"{str(row.aasta)} / {str(row.kuu)}\n"
+            f"{'' if (specific_topic_names[i] == OUTLIER_NAME or specific_topic_names[i] == '') else f'Teema: {str(specific_topic_names[i]).replace('`', '')}'}"
             for i, (index, row) in enumerate(self.articles_df.iterrows())
         ]
         return hover_text, specific_topic_names
@@ -256,7 +257,7 @@ class VisualizationService:
             "title": self.articles_df['pealkiri'].map(clean_text),
             "author": self.articles_df['autor'].map(clean_text),
             # Vectorized string concatenation is much faster than row iteration
-            "date": (self.articles_df['kuu'].astype(str) + "/" + self.articles_df['aasta'].astype(str)),
+            "date": (self.articles_df['aasta'].astype(str) + " / " + self.articles_df['kuu'].astype(str)),
             "file_path": self.articles_df['file_path'].map(clean_text),
             "abstract": self.articles_df['kirjeldus'].map(clean_text).replace("nan", "Sisukokkuvõte puudub.")
             if 'kirjeldus' in self.articles_df.columns
@@ -281,16 +282,16 @@ class VisualizationService:
 
             const contentBox = document.getElementById("point-info-content");
             contentBox.innerHTML = `
-                <div class="article-card">
-                    <div class="article-header">
+                <details open>
+                    <summary class="article-summary">
                         <div class="title"><p>{title}</p></div>
                         <div class="author-info"><p><em>{author}</em></p><p class="text-gray"><em>{info}</em></p></div>
-                    </div>
-                    <div class="article-body">
-                        <div class="abstract-container"><p class="abstract-text is-clamped">{abstract}</p><button class="toggle-abstract-btn">Loe edasi</button></div>
+                    </summary>
+                    <article>
+                        <div class="details-section"><p class="abstract-text is-clamped">{abstract}</p><button class="toggle-abstract-btn">Loe edasi</button></div>
                         <div><a href="{file_path}" target="_blank" class="goto-article-btn outline" style="text-decoration: none;">&gt;&nbsp; NÄITA NUMBRIS</a></div>
-                    </div>
-                </div>
+                    </article>
+                </details>
             `;
 
             const abstractText = contentBox.querySelector('.abstract-text');
@@ -315,6 +316,18 @@ class VisualizationService:
             enable_topic_tree=True,
             font_family="Josefin Sans",
             tooltip_font_family="Tinos",
+            tooltip_css=
+            """
+            .deck-tooltip {
+                background-color: #ffffff;
+                color: var(--text-color);
+                border: 1px solid var(--text-color);
+                padding: var(--spacing);
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                font-size: 0.9rem;
+                z-index: 10000;
+            }
+            """,
             color_label_text=False,
             colormap_rawdata=[date_data, density_data],
             colormap_metadata=[{"field": "date", "description": "KUU", "cmap": "cet_CET_L15", "kind": "datetime"},

@@ -1,6 +1,6 @@
 # Kultuuriajakirja AKADEEMIA kaardistamine
 
-**Autorid:** Hendrik Matvejev (informaatika, BA III) & Riki-Taavi Nurm (matemaatika, BA III)
+**Autorid:** Hendrik Matvejev (informaatika, BA III) ja Riki-Taavi Nurm (matemaatika, BA III)
 
 ## Sissejuhatus
 
@@ -12,7 +12,7 @@ Inspiratsiooniks oli sarnane projekt OpenSyllabus Galaxy [2].
 
 *Märkus: Veebilehele pääseb [https://akadeemia-arhiiv-120962177191.europe-north1.run.app/].*
 
-![Akadeemia 2025. aasta jaanuari numbri esikaas [3]](pildid/akad_kaas.png)
+<img src="pildid/akad_kaas.png" alt="Akadeemia 2025. aasta jaanuari numbri esikaas [3]" width="300">
 
 ---
 
